@@ -6,21 +6,16 @@ extends Area2D
 @onready var wake_up_sound = $AudioStreamPlayer
 
 var asleep: bool = true
+var grid_pos: Vector2i
 
 # initialization
 func _ready():
 	player.ping.connect(on_player_ping)
+	grid_pos = tile_map.local_to_map(position)
 
 # per-frame processing
 func _process(delta: float):
 	pass
-	
-func _input(event: InputEvent) -> void:
-	if (event.is_action_pressed("move_up") or
-	   	event.is_action_pressed("move_down") or
-	   	event.is_action_pressed("move_left") or
-	   	event.is_action_pressed("move_right")):
-		step()
 	
 # take a turn
 func step():
@@ -32,10 +27,13 @@ func step():
 	var player_pos = tile_map.local_to_map(player.position)
 	
 	var path = tile_map.astar.get_id_path(curr_pos, player_pos)
-	if path.size() < 2:
+	if path.size() < 3:
 		return
 		
 	var next_pos = tile_map.map_to_local(path[1])
+	tile_map.astar.set_point_solid(grid_pos, false)
+	tile_map.astar.set_point_solid(path[1], true)
+	grid_pos = path[1]
 	position = next_pos
 	
 
