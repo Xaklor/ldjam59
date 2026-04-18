@@ -45,6 +45,6 @@ func _input(event: InputEvent):
 				slot_num -= 1
 				$selector.position.y -= 36
 		
-	if event.is_action_pressed("face_button_right"):
+	if event.is_action_pressed("face_button_up"):
 		queue_free()
 	get_viewport().set_input_as_handled()

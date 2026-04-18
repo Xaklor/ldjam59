@@ -46,36 +46,35 @@ func _unhandled_input(event: InputEvent):
 			position.x += tile_map.tile_set.tile_size.x
 			grid_pos.x += 1
 			moved = true
-	if event.is_action_pressed("face_button_up"):
+	if event.is_action_pressed("face_button_left"):
 		ping.emit()
 		acted = true
-	if event.is_action_pressed("face_button_right"):
+	if event.is_action_pressed("face_button_up"):
 		var menu = item_menu.instantiate()
 		menu.items = items
 		main.add_child(menu)
 	if event.is_action_pressed("face_button_down"):
-		var area = [Vector2i(0, 1)]
+		acted = true
+		var area = [Vector2i(1, 0)]
 		var damage = 1
 		for item in items:
 			if item.is_equipped:
 				area = item.attack_area
 				damage = item.attack_damage
 				
+		var transform: Transform2D
 		match facing:
 			0:
-				pass
+				transform = Transform2D(Vector2i(1, 0), Vector2i(0, 1), Vector2i(0, 0))
 			1:
-				for idx in area.size():
-					area[idx] = Vector2i(Transform2D(Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, 0)) * Vector2(area[idx]))
+				transform = Transform2D(Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, 0))
 			2:
-				for idx in area.size():
-					area[idx] = Vector2i(Transform2D(Vector2i(-1, 0), Vector2i(0, -1), Vector2i(0, 0)) * Vector2(area[idx]))
+				transform = Transform2D(Vector2i(-1, 0), Vector2i(0, -1), Vector2i(0, 0))
 			3:
-				for idx in area.size():
-					area[idx] = Vector2i(Transform2D(Vector2i(0, -1), Vector2i(1, 0), Vector2i(0, 0)) * Vector2(area[idx]))
+				transform = Transform2D(Vector2i(0, -1), Vector2i(1, 0), Vector2i(0, 0))
 		
 		for point in area:
-			print("attacking location: " + str(grid_pos + point))
+			point = Vector2i(transform * Vector2(point))
 			for enemy in get_tree().get_nodes_in_group("enemies"):
 				if grid_pos + point == enemy.grid_pos:
 					enemy.take_damage(damage)
