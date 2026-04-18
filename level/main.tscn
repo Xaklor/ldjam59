@@ -1,11 +1,12 @@
-[gd_scene format=4 uid="uid://yyvtbpgfecja"]
+[gd_scene load_steps=10 format=4 uid="uid://yyvtbpgfecja"]
 
-[ext_resource type="Texture2D" uid="uid://d08xjk0jvamu3" path="res://assets/basic tileset.png" id="1_ig7tw"]
-[ext_resource type="Script" path="res://level/main.gd" id="1_qh04p"]
+[ext_resource type="Texture2D" uid="uid://btfksi1su8fwp" path="res://assets/basic tileset.png" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c4pm7j3wm3gcq" path="res://level/main.gd" id="1_qh04p"]
 [ext_resource type="PackedScene" uid="uid://cnx1by327ssap" path="res://entities/player.tscn" id="2_0ukcc"]
 [ext_resource type="Script" uid="uid://c6gcgmrtuod8l" path="res://level/tile_map.gd" id="2_nt2wp"]
-[ext_resource type="PackedScene" path="res://entities/stabby.tscn" id="5_k8f8b"]
-[ext_resource type="PackedScene" uid="uid://r5mfptjb57cb" path="res://entities/sleepy.tscn" id="6_7vc00"]
+[ext_resource type="PackedScene" uid="uid://iosdxywq1swa" path="res://entities/loot.tscn" id="5_7vc00"]
+[ext_resource type="PackedScene" uid="uid://dgll4nlcltkvv" path="res://entities/stabby.tscn" id="5_k8f8b"]
+[ext_resource type="PackedScene" uid="uid://bm8rywux3jirg" path="res://entities/sleepy.tscn" id="6_7vc00"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_ig7tw")
@@ -25,21 +26,27 @@ custom_data_layer_0/name = "tile_type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_0xm2m")
 
-[node name="main" type="Node" unique_id=1538040922]
+[node name="main" type="Node"]
 script = ExtResource("1_qh04p")
 
-[node name="tile_map" type="TileMapLayer" parent="." unique_id=80532063]
+[node name="tile_map" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAAAAAAQAAAABAAEAAAAAAAUAAAABAAEAAAABAAUAAAABAAEAAAACAAUAAAABAAEAAAADAAUAAAABAAEAAAAEAAUAAAABAAEAAAAFAAUAAAABAAEAAAAGAAUAAAABAAEAAAAHAAUAAAABAAEAAAAHAAQAAAABAAEAAAAHAAMAAAABAAEAAAAHAAIAAAABAAEAAAAHAAEAAAABAAEAAAAHAAAAAAABAAEAAAAGAAAAAAABAAEAAAAFAAAAAAABAAEAAAAEAAAAAAABAAEAAAADAAAAAAABAAEAAAACAAAAAAABAAEAAAABAAAAAAABAAEAAAACAAIAAAAAAAEAAAACAAMAAAAAAAEAAAADAAMAAAAAAAEAAAADAAIAAAAAAAEAAAABAAQAAAABAAAAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAABAAAAAAAFAAQAAAABAAAAAAAGAAMAAAABAAAAAAAGAAIAAAABAAAAAAAGAAEAAAABAAAAAAAFAAEAAAABAAAAAAAEAAEAAAABAAAAAAADAAEAAAABAAAAAAACAAEAAAABAAAAAAABAAEAAAABAAAAAAABAAIAAAABAAAAAAABAAMAAAABAAAAAAAEAAMAAAABAAAAAAAFAAMAAAABAAAAAAAFAAIAAAABAAAAAAAEAAIAAAABAAAAAAAGAAQAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_h2yge")
 script = ExtResource("2_nt2wp")
 
-[node name="player" parent="." unique_id=1736263907 instance=ExtResource("2_0ukcc")]
-position = Vector2(352, 160)
-
-[node name="stabby" parent="." unique_id=782767345 instance=ExtResource("5_k8f8b")]
+[node name="stabby" parent="." instance=ExtResource("5_k8f8b")]
 position = Vector2(416, 288)
 
-[node name="sleepy" parent="." unique_id=180175543 instance=ExtResource("6_7vc00")]
-position = Vector2(288, 224)
+[node name="stabby2" parent="." instance=ExtResource("5_k8f8b")]
+position = Vector2(288, 288)
+
+[node name="sleepy" parent="." instance=ExtResource("6_7vc00")]
+position = Vector2(352, 288)
+
+[node name="loot" parent="." instance=ExtResource("5_7vc00")]
+position = Vector2(224, 96)
+
+[node name="player" parent="." instance=ExtResource("2_0ukcc")]
+position = Vector2(352, 160)
 
 [connection signal="ping" from="player" to="." method="_on_player_ping"]

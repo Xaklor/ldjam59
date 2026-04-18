@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddcxe0s42qvde"]
+
+[ext_resource type="Script" uid="uid://b714bgmh8um26" path="res://ui/item_menu.gd" id="1_xv3ax"]
+[ext_resource type="Texture2D" uid="uid://gq4d16b1gjkr" path="res://assets/selector.png" id="3_sq0qv"]
+
+[node name="item_menu" type="CanvasLayer"]
+script = ExtResource("1_xv3ax")
+
+[node name="color" type="ColorRect" parent="."]
+offset_right = 448.0
+offset_bottom = 512.0
+color = Color(0.19, 0.19, 0.19, 0.494118)
+
+[node name="menu_list" type="VBoxContainer" parent="."]
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 432.0
+offset_bottom = 496.0
+
+[node name="selector" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("3_sq0qv")
