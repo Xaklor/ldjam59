@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://yyvtbpgfecja"]
+[gd_scene load_steps=8 format=4 uid="uid://yyvtbpgfecja"]
 
 [ext_resource type="Texture2D" uid="uid://btfksi1su8fwp" path="res://assets/basic tileset.png" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c4pm7j3wm3gcq" path="res://level/main.gd" id="1_qh04p"]
 [ext_resource type="PackedScene" uid="uid://cnx1by327ssap" path="res://entities/player.tscn" id="2_0ukcc"]
 [ext_resource type="Script" uid="uid://c6gcgmrtuod8l" path="res://level/tile_map.gd" id="2_nt2wp"]
+[ext_resource type="PackedScene" uid="uid://dgll4nlcltkvv" path="res://entities/stabby.tscn" id="5_k8f8b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_ig7tw")
@@ -23,6 +25,7 @@ custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_0xm2m")
 
 [node name="main" type="Node"]
+script = ExtResource("1_qh04p")
 
 [node name="tile_map" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAAAAAAQAAAABAAEAAAAAAAUAAAABAAEAAAABAAUAAAABAAEAAAACAAUAAAABAAEAAAADAAUAAAABAAEAAAAEAAUAAAABAAEAAAAFAAUAAAABAAEAAAAGAAUAAAABAAEAAAAHAAUAAAABAAEAAAAHAAQAAAABAAEAAAAHAAMAAAABAAEAAAAHAAIAAAABAAEAAAAHAAEAAAABAAEAAAAHAAAAAAABAAEAAAAGAAAAAAABAAEAAAAFAAAAAAABAAEAAAAEAAAAAAABAAEAAAADAAAAAAABAAEAAAACAAAAAAABAAEAAAABAAAAAAABAAEAAAACAAIAAAAAAAEAAAACAAMAAAAAAAEAAAADAAMAAAAAAAEAAAADAAIAAAAAAAEAAAABAAQAAAABAAAAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAABAAAAAAAFAAQAAAABAAAAAAAGAAMAAAABAAAAAAAGAAIAAAABAAAAAAAGAAEAAAABAAAAAAAFAAEAAAABAAAAAAAEAAEAAAABAAAAAAADAAEAAAABAAAAAAACAAEAAAABAAAAAAABAAEAAAABAAAAAAABAAIAAAABAAAAAAABAAMAAAABAAAAAAAEAAMAAAABAAAAAAAFAAMAAAABAAAAAAAFAAIAAAABAAAAAAAEAAIAAAABAAAAAAAGAAQAAAABAAAAAAA=")
@@ -31,3 +34,11 @@ script = ExtResource("2_nt2wp")
 
 [node name="player" parent="." instance=ExtResource("2_0ukcc")]
 position = Vector2(352, 160)
+
+[node name="stabby" parent="." instance=ExtResource("5_k8f8b")]
+position = Vector2(416, 288)
+
+[node name="stabby2" parent="." instance=ExtResource("5_k8f8b")]
+position = Vector2(288, 288)
+
+[connection signal="ping" from="player" to="." method="_on_player_ping"]

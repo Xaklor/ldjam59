@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbraopdavugji"]
+
+[ext_resource type="Script" uid="uid://f4mbwo4dfp8n" path="res://ui/minimap.gd" id="1_7p2yb"]
+
+[node name="minimap" type="Node2D"]
+script = ExtResource("1_7p2yb")
