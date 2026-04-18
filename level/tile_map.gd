@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 var astar = AStarGrid2D.new()
+var loot_map: Array[Array]
 
 func _ready():
 	var tilemap_size = get_used_rect().end - get_used_rect().position
@@ -16,3 +17,9 @@ func _ready():
 			var pos = Vector2i(i, j)
 			if get_cell_tile_data(pos).get_custom_data("tile_type") == "wall":
 				astar.set_point_solid(pos)
+	
+	loot_map = []
+	for x in astar.region.end.x:
+		loot_map.append([])
+		for y in astar.region.end.y:
+			loot_map[x].append(null)

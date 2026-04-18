@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://iosdxywq1swa"]
+
+[ext_resource type="Texture2D" uid="uid://diollos0mfjte" path="res://assets/orb.png" id="1_44sxh"]
+[ext_resource type="Script" uid="uid://bnq64g7u2ucjv" path="res://entities/loot.gd" id="2_pp0ru"]
+
+[node name="loot" type="Sprite2D"]
+texture = ExtResource("1_44sxh")
+script = ExtResource("2_pp0ru")
