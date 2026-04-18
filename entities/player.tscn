@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnx1by327ssap"]
+[gd_scene format=3 uid="uid://cnx1by327ssap"]
 
 [ext_resource type="Script" uid="uid://bmdxia6ckn02f" path="res://entities/player.gd" id="1_merdl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3f3p"]
 size = Vector2(64, 64)
 
-[node name="player" type="Area2D"]
+[node name="player" type="Area2D" unique_id=1911441407]
 script = ExtResource("1_merdl")
 
-[node name="hitbox" type="CollisionShape2D" parent="."]
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=1897733318]
 shape = SubResource("RectangleShape2D_u3f3p")
 
-[node name="color" type="ColorRect" parent="."]
+[node name="color" type="ColorRect" parent="." unique_id=338438910]
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0

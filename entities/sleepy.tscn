@@ -1,19 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bm8rywux3jirg"]
+[gd_scene format=3 uid="uid://r5mfptjb57cb"]
 
 [ext_resource type="Script" uid="uid://buh4g4vo185mb" path="res://entities/sleepy.gd" id="1_0wkjs"]
+[ext_resource type="AudioStream" uid="uid://cs8q3020urt35" path="res://assets/random.wav" id="2_bmyvh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmyvh"]
 size = Vector2(64, 64)
 
-[node name="sleepy" type="Area2D" groups=["enemies"]]
+[node name="sleepy" type="Area2D" unique_id=180175543 groups=["enemies"]]
 script = ExtResource("1_0wkjs")
 
-[node name="hitbox" type="CollisionShape2D" parent="."]
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=560067794]
 shape = SubResource("RectangleShape2D_bmyvh")
 
-[node name="color" type="ColorRect" parent="."]
+[node name="color" type="ColorRect" parent="." unique_id=744876171]
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
 offset_bottom = 32.0
 color = Color(0.37, 0.37, 0.37, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1704365746]
+stream = ExtResource("2_bmyvh")

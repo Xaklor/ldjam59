@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgll4nlcltkvv"]
+[gd_scene format=3 uid="uid://dgll4nlcltkvv"]
 
 [ext_resource type="Script" uid="uid://cc4ew6vqbdhuh" path="res://entities/stabby.gd" id="1_1pa3r"]
 
