@@ -4,6 +4,7 @@ extends Area2D
 @onready var player = main.get_node("player")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 @onready var wake_up_sound = $AudioStreamPlayer
+@onready var animation = $AnimatedSprite2D
 
 var echo = preload("res://ui/echo.gd")
 
@@ -16,6 +17,7 @@ var pinged = false
 func _ready():
 	player.ping.connect(on_player_ping)
 	grid_pos = tile_map.local_to_map(position)
+	animation.play("asleep")
 
 # per-frame processing
 func _process(delta: float):
@@ -45,6 +47,7 @@ func step():
 		wake_up_sound.play()
 		echo.spawn(get_tree(), global_position, Color.RED)
 		asleep = false
+		animation.play("awake")
 		pinged = false
 
 	

@@ -1,19 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgll4nlcltkvv"]
+[gd_scene format=3 uid="uid://dgll4nlcltkvv"]
 
 [ext_resource type="Script" uid="uid://cc4ew6vqbdhuh" path="res://entities/stabby.gd" id="1_1pa3r"]
+[ext_resource type="Texture2D" uid="uid://c4t7bfkccrw6j" path="res://assets/stabby.png" id="2_emnyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xful"]
 size = Vector2(32, 32)
 
-[node name="stabby" type="Area2D" groups=["enemies"]]
+[node name="stabby" type="Area2D" unique_id=876780094 groups=["enemies"]]
 script = ExtResource("1_1pa3r")
 
-[node name="hitbox" type="CollisionShape2D" parent="."]
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=467540853]
 shape = SubResource("RectangleShape2D_4xful")
 
-[node name="color" type="ColorRect" parent="."]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-color = Color(0.666667, 0, 0, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=964124077]
+texture = ExtResource("2_emnyu")
