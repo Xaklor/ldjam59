@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b33tob8fno0vs"]
-
-[ext_resource type="Script" uid="uid://bbrbtt7hltd1r" path="res://ui/ping_response.gd" id="1_cx75l"]
-
-[node name="ping_response" type="Node2D"]
-script = ExtResource("1_cx75l")

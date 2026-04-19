@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cisej75q3nwdx"]
-
-[ext_resource type="Script" uid="uid://c16bdj3j5uiof" path="res://ui/immediate_alert.gd" id="1_eblf5"]
-
-[node name="immediate_alert" type="Node2D"]
-script = ExtResource("1_eblf5")

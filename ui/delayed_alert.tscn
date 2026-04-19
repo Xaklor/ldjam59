@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp4gdn2cjivir"]
-
-[ext_resource type="Script" uid="uid://dve6ne6i3jnlm" path="res://ui/delayed_alert.gd" id="1_qkily"]
-
-[node name="delayed_alert" type="Node2D"]
-script = ExtResource("1_qkily")

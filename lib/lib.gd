@@ -14,3 +14,6 @@ class Item:
 		self.is_equipped = false
 		self.attack_area = attack_area
 		self.attack_damage = attack_damage
+		# ITEM EFFECTS:
+		# 0: repair kit (restore hp)
+		

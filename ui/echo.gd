@@ -1,6 +1,6 @@
 extends Sprite2D
 
-static var echo_scene = preload("res://entities/echo.tscn")
+static var echo_scene = preload("res://ui/echo.tscn")
 var time := 0.0
 
 func _ready():

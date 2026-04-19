@@ -4,7 +4,7 @@ extends Area2D
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 @export var item_menu: PackedScene
 
-var echo = preload("res://entities/echo.gd")
+var echo = preload("res://ui/echo.gd")
 signal ping
 signal end_turn
 

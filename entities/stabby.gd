@@ -5,9 +5,12 @@ extends Area2D
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 var grid_pos: Vector2i
 var hp: int
+var echo = preload("res://ui/echo.gd")
+var pinged = false
 
 # initialization
 func _ready():
+	player.ping.connect(on_player_ping)
 	grid_pos = tile_map.local_to_map(position)
 	hp = 5
 	
@@ -32,6 +35,10 @@ func step():
 	tile_map.astar.set_point_solid(path[1], true)
 	grid_pos = path[1]
 	position = next_pos
+	
+	if pinged:
+		echo.spawn(get_tree(), global_position, Color.RED)
+		pinged = false
 
 # called when the player is in range and this enemy wants to attack them
 func intend_to_attack():
@@ -43,4 +50,4 @@ func take_damage(amount):
 
 # called when the player uses a ping
 func on_player_ping():
-	pass
+	pinged = true
