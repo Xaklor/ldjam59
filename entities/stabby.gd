@@ -26,6 +26,7 @@ func step():
 	if hp <= 0:
 		tile_map.astar.set_point_solid(grid_pos, false)
 		queue_free()
+		return
 	var curr_pos = tile_map.local_to_map(position)
 	var player_pos = tile_map.local_to_map(player.position)
 	
