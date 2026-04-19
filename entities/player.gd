@@ -3,8 +3,10 @@ extends Area2D
 @onready var main = get_tree().get_root().get_node("main")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 @export var item_menu: PackedScene
+const PING_RANGE: int = 8
 
 var echo = preload("res://ui/echo.gd")
+var atk = preload("res://ui/attack_animation.gd")
 signal ping
 signal end_turn
 
@@ -49,7 +51,7 @@ func _unhandled_input(event: InputEvent):
 			grid_pos.x += 1
 			moved = true
 	if event.is_action_pressed("face_button_left"):
-		ping.emit()
+		ping.emit(grid_pos, PING_RANGE)
 		echo.spawn(get_tree(), global_position, Color.html("#89d9fc"))
 		acted = true
 	if event.is_action_pressed("face_button_up"):
@@ -78,6 +80,7 @@ func _unhandled_input(event: InputEvent):
 		
 		for point in area:
 			point = Vector2i(transform * Vector2(point))
+			atk.spawn(get_tree(), (Vector2(grid_pos + point) + Vector2(0.5, 0.5)) * tile_map.astar.cell_size)
 			for enemy in get_tree().get_nodes_in_group("enemies"):
 				if grid_pos + point == enemy.grid_pos:
 					enemy.take_damage(damage)

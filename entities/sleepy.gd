@@ -7,6 +7,7 @@ extends Area2D
 @onready var animation = $AnimatedSprite2D
 
 var echo = preload("res://ui/echo.gd")
+var atk = preload("res://ui/attack_animation.gd")
 var sleep_ping_icon = preload("res://assets/sleeper-inactive.png")
 var awake_ping_icon = preload("res://assets/sleeper-active.png")
 
@@ -46,6 +47,7 @@ func step():
 			position = next_pos
 			ready_to_attack = false
 		elif path.size() <= 2 and ready_to_attack:
+			atk.spawn(get_tree(), player.global_position)
 			player.take_damage(attack)
 			ready_to_attack = false
 		elif not ready_to_attack:
@@ -74,5 +76,6 @@ func take_damage(amount):
 	asleep = false
 	
 # called when the player uses a ping
-func on_player_ping():
-	pinged = true
+func on_player_ping(pos, range):
+	if abs(pos.x - grid_pos.x) + abs(pos.y - grid_pos.y) <= range:
+		pinged = true

@@ -13,5 +13,7 @@ func _ready():
 	var grid_pos = tile_map.local_to_map(position)
 	tile_map.loot_map[grid_pos.x][grid_pos.y] = self
 	
-func on_player_ping():
-	echo.spawn(get_tree(), global_position, Color("#2a983d"), ping_icon)
+func on_player_ping(pos, range):
+	var grid_pos = tile_map.local_to_map(position)
+	if abs(pos.x - grid_pos.x) + abs(pos.y - grid_pos.y) <= range:
+		echo.spawn(get_tree(), global_position, Color("#2a983d"), ping_icon)

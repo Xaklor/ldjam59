@@ -7,6 +7,7 @@ var grid_pos: Vector2i
 var hp: int = 5
 var attack: int = 5
 var echo = preload("res://ui/echo.gd")
+var atk = preload("res://ui/attack_animation.gd")
 var ping_icon = preload("res://assets/stabby.png")
 var pinged = false
 var ready_to_attack = false
@@ -39,6 +40,7 @@ func step():
 		ready_to_attack = false
 	 # player IS adjacent to this enemy
 	elif path.size() <= 2 and ready_to_attack:
+		atk.spawn(get_tree(), player.global_position)
 		player.take_damage(attack)
 		ready_to_attack = false
 	elif not ready_to_attack:
@@ -60,5 +62,6 @@ func take_damage(amount):
 	hp -= amount
 
 # called when the player uses a ping
-func on_player_ping():
-	pinged = true
+func on_player_ping(pos, range):
+	if abs(pos.x - grid_pos.x) + abs(pos.y - grid_pos.y) <= range:
+		pinged = true
