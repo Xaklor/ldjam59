@@ -4,5 +4,6 @@
 [ext_resource type="Script" uid="uid://bnq64g7u2ucjv" path="res://entities/loot.gd" id="2_pp0ru"]
 
 [node name="loot" type="Sprite2D"]
+visible = false
 texture = ExtResource("1_44sxh")
 script = ExtResource("2_pp0ru")

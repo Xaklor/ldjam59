@@ -4,6 +4,7 @@ extends Sprite2D
 @onready var player = main.get_node("player")
 @onready var tile_map: TileMapLayer = main.get_node("tile_map")
 var echo = preload("res://ui/echo.gd")
+var ping_icon = preload("res://assets/orb.png")
 var item: Lib.Item
 
 func _ready():
@@ -13,4 +14,4 @@ func _ready():
 	tile_map.loot_map[grid_pos.x][grid_pos.y] = self
 	
 func on_player_ping():
-	echo.spawn(get_tree(), global_position, Color("#2a983d"))
+	echo.spawn(get_tree(), global_position, Color("#2a983d"), ping_icon)

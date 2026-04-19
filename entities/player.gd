@@ -10,12 +10,12 @@ signal end_turn
 
 var grid_pos: Vector2i
 # right, down, left, up
-var facing: int
+var facing: int = 0
 var items: Array[Lib.Item]
+var hp: int = 20
 
 func _ready():
 	grid_pos = tile_map.local_to_map(position)
-	facing = 0
 	items = [Lib.Item.new("banana", 0), Lib.Item.new("bananarang", 0), Lib.Item.new("dirk", 0, true, [Vector2i(1, 0)], 2), Lib.Item.new("dirk of cronus", 0, true, [Vector2i(1, 0), Vector2i(2, 0)], 5)]
 	
 func _process(delta: float):
@@ -92,4 +92,4 @@ func _unhandled_input(event: InputEvent):
 		end_turn.emit()
 
 func take_damage(amount):
-	pass
+	print("I've been shot, I've been shot!: " + str(amount))

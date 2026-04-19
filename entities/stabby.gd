@@ -4,15 +4,17 @@ extends Area2D
 @onready var player = main.get_node("player")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 var grid_pos: Vector2i
-var hp: int
+var hp: int = 5
+var attack: int = 5
 var echo = preload("res://ui/echo.gd")
+var ping_icon = preload("res://assets/stabby.png")
 var pinged = false
+var ready_to_attack = false
 
 # initialization
 func _ready():
 	player.ping.connect(on_player_ping)
 	grid_pos = tile_map.local_to_map(position)
-	hp = 5
 	
 # per-frame processing
 func _process(delta: float):
@@ -27,17 +29,26 @@ func step():
 	var player_pos = tile_map.local_to_map(player.position)
 	
 	var path = tile_map.astar.get_id_path(curr_pos, player_pos)
-	if path.size() < 3:
-		return
+	# player is not adjacent to this enemy
+	if path.size() > 2 and not ready_to_attack:
+		var next_pos = tile_map.map_to_local(path[1])
+		tile_map.astar.set_point_solid(grid_pos, false)
+		tile_map.astar.set_point_solid(path[1], true)
+		grid_pos = path[1]
+		position = next_pos
+		ready_to_attack = false
+	 # player IS adjacent to this enemy
+	elif path.size() <= 2 and ready_to_attack:
+		player.take_damage(attack)
+		ready_to_attack = false
+	elif not ready_to_attack:
+		echo.spawn(get_tree(), global_position, Color.RED, ping_icon)
+		ready_to_attack = true
+	else:
+		ready_to_attack = false
 		
-	var next_pos = tile_map.map_to_local(path[1])
-	tile_map.astar.set_point_solid(grid_pos, false)
-	tile_map.astar.set_point_solid(path[1], true)
-	grid_pos = path[1]
-	position = next_pos
-	
 	if pinged:
-		echo.spawn(get_tree(), global_position, Color.RED)
+		echo.spawn(get_tree(), global_position, Color.RED, ping_icon)
 		pinged = false
 
 # called when the player is in range and this enemy wants to attack them

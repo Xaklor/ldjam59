@@ -7,11 +7,15 @@ extends Area2D
 @onready var animation = $AnimatedSprite2D
 
 var echo = preload("res://ui/echo.gd")
+var sleep_ping_icon = preload("res://assets/sleeper-inactive.png")
+var awake_ping_icon = preload("res://assets/sleeper-active.png")
 
 var asleep: bool = true
 var grid_pos: Vector2i
 var hp = 10
+var attack = 10
 var pinged = false
+var ready_to_attack = false
 
 # initialization
 func _ready():
@@ -34,23 +38,31 @@ func step():
 		var player_pos = tile_map.local_to_map(player.position)
 		
 		var path = tile_map.astar.get_id_path(curr_pos, player_pos)
-		if path.size() < 3:
-			return
-			
-		var next_pos = tile_map.map_to_local(path[1])
-		tile_map.astar.set_point_solid(grid_pos, false)
-		tile_map.astar.set_point_solid(path[1], true)
-		grid_pos = path[1]
-		position = next_pos
+		if path.size() > 2 and not ready_to_attack:
+			var next_pos = tile_map.map_to_local(path[1])
+			tile_map.astar.set_point_solid(grid_pos, false)
+			tile_map.astar.set_point_solid(path[1], true)
+			grid_pos = path[1]
+			position = next_pos
+			ready_to_attack = false
+		elif path.size() <= 2 and ready_to_attack:
+			player.take_damage(attack)
+			ready_to_attack = false
+		elif not ready_to_attack:
+			echo.spawn(get_tree(), global_position, Color.RED, awake_ping_icon)
+			ready_to_attack = true
+		else:
+			ready_to_attack = false
 	
 	if pinged:
 		wake_up_sound.play()
-		echo.spawn(get_tree(), global_position, Color.RED)
-		asleep = false
-		animation.play("awake")
 		pinged = false
-
-	
+		if asleep:
+			asleep = false
+			animation.play("awake")
+			echo.spawn(get_tree(), global_position, Color.RED, sleep_ping_icon)
+		else:
+			echo.spawn(get_tree(), global_position, Color.RED, awake_ping_icon)
 
 # called when the player is in range and this enemy wants to attack them
 func intend_to_attack():
