@@ -1,25 +1,13 @@
 [gd_scene load_steps=12 format=4 uid="uid://yyvtbpgfecja"]
 
-[ext_resource type="Texture2D" uid="uid://btfksi1su8fwp" path="res://assets/basic tileset.png" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c4pm7j3wm3gcq" path="res://level/main.gd" id="1_qh04p"]
 [ext_resource type="PackedScene" uid="uid://cnx1by327ssap" path="res://entities/player.tscn" id="2_0ukcc"]
 [ext_resource type="Script" uid="uid://c6gcgmrtuod8l" path="res://level/tile_map.gd" id="2_nt2wp"]
 [ext_resource type="Texture2D" uid="uid://dl4k73p7iemdf" path="res://assets/tileset.png" id="3_j70lj"]
+[ext_resource type="Texture2D" uid="uid://nsmgi3lrl6cs" path="res://assets/tileset 2.png" id="3_ry1g7"]
 [ext_resource type="PackedScene" uid="uid://iosdxywq1swa" path="res://entities/loot.tscn" id="5_7vc00"]
 [ext_resource type="PackedScene" uid="uid://dgll4nlcltkvv" path="res://entities/stabby.tscn" id="5_k8f8b"]
 [ext_resource type="PackedScene" uid="uid://r5mfptjb57cb" path="res://entities/sleepy.tscn" id="6_7vc00"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
-texture = ExtResource("1_ig7tw")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-0:0/0/custom_data_0 = "wall"
-1:0/0 = 0
-1:0/0/custom_data_0 = "normal"
-0:1/0 = 0
-0:1/0/custom_data_0 = "wall"
-1:1/0 = 0
-1:1/0/custom_data_0 = "wall"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ry1g7"]
 texture = ExtResource("3_j70lj")
@@ -45,12 +33,60 @@ texture_region_size = Vector2i(32, 32)
 0:2/0 = 0
 0:2/0/custom_data_0 = "normal"
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tdkxd"]
+texture = ExtResource("3_ry1g7")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = "wall"
+1:0/0 = 0
+1:0/0/custom_data_0 = "wall"
+2:0/0 = 0
+2:0/0/custom_data_0 = "wall"
+0:1/0 = 0
+0:1/0/custom_data_0 = "wall"
+1:1/0 = 0
+1:1/0/custom_data_0 = "wall"
+3:1/0 = 0
+3:1/0/custom_data_0 = "wall"
+0:2/0 = 0
+0:2/0/custom_data_0 = "wall"
+1:2/0 = 0
+1:2/0/custom_data_0 = "wall"
+3:2/0 = 0
+3:2/0/custom_data_0 = "wall"
+0:3/0 = 0
+0:3/0/custom_data_0 = "wall"
+1:3/0 = 0
+1:3/0/custom_data_0 = "wall"
+2:3/0 = 0
+2:3/0/custom_data_0 = "wall"
+2:4/0 = 0
+2:4/0/custom_data_0 = "wall"
+3:4/0 = 0
+3:4/0/custom_data_0 = "wall"
+3:3/0 = 0
+3:3/0/custom_data_0 = "wall"
+1:4/0 = 0
+1:4/0/custom_data_0 = "wall"
+0:4/0 = 0
+0:4/0/custom_data_0 = "wall"
+4:0/0 = 0
+4:0/0/custom_data_0 = "wall"
+2:2/0 = 0
+2:2/0/custom_data_0 = "wall"
+2:1/0 = 0
+2:1/0/custom_data_0 = "wall"
+3:0/0 = 0
+3:0/0/custom_data_0 = "wall"
+4:1/0 = 0
+4:1/0/custom_data_0 = "normal"
+
 [sub_resource type="TileSet" id="TileSet_h2yge"]
 tile_size = Vector2i(32, 32)
 custom_data_layer_0/name = "tile_type"
 custom_data_layer_0/type = 4
-sources/0 = SubResource("TileSetAtlasSource_0xm2m")
 sources/1 = SubResource("TileSetAtlasSource_ry1g7")
+sources/2 = SubResource("TileSetAtlasSource_tdkxd")
 
 [node name="main" type="Node"]
 script = ExtResource("1_qh04p")

@@ -9,6 +9,7 @@ var echo = preload("res://entities/echo.gd")
 
 var asleep: bool = true
 var grid_pos: Vector2i
+var hp = 10
 
 # initialization
 func _ready():
@@ -21,6 +22,9 @@ func _process(delta: float):
 	
 # take a turn
 func step():
+	if hp <= 0:
+		tile_map.astar.set_point_solid(grid_pos, false)
+		queue_free()
 	# sleepy is strong but passive until pinged
 	if asleep:
 		return
@@ -45,7 +49,8 @@ func intend_to_attack():
 
 # called when something causes them to take damage
 func take_damage(amount):
-	pass
+	hp -= amount
+	asleep = false
 	
 # called when the player uses a ping
 func on_player_ping():
