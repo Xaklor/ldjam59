@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://d1tmh55k56vsx"]
+
+[ext_resource type="Script" uid="uid://ce85escudfayv" path="res://level/dungeon.gd" id="1_jv6ym"]
+[ext_resource type="Texture2D" uid="uid://drsxmyfaq658" path="res://assets/tileset 2.png" id="2_4rako"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jv6ym"]
+texture = ExtResource("2_4rako")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4rako"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_jv6ym")
+
+[node name="dungeon" type="Node2D" unique_id=636243078]
+script = ExtResource("1_jv6ym")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2093585996]
+tile_set = SubResource("TileSet_4rako")

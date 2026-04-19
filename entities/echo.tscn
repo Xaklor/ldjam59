@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://bf4ffpdx3xae2"]
+[gd_scene format=3 uid="uid://p5bx4ltotkwn"]
 
-[ext_resource type="Shader" uid="uid://c5g5peuchtay8" path="res://ui/echo.gdshader" id="1_wo815"]
-[ext_resource type="Script" uid="uid://bnrhqsc5pw3mk" path="res://ui/echo.gd" id="2_1valw"]
-[ext_resource type="Texture2D" uid="uid://dsyx8obm2n61l" path="res://icon.svg" id="2_wo815"]
+[ext_resource type="Shader" path="res://entities/echo.gdshader" id="1_wo815"]
+[ext_resource type="Script" path="res://entities/echo.gd" id="2_1valw"]
+[ext_resource type="Texture2D" uid="uid://b1bd18jmpn2ew" path="res://icon.svg" id="2_wo815"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wo815"]
 shader = ExtResource("1_wo815")
@@ -12,7 +12,7 @@ shader_parameter/max_radius = 0.5
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/time = 0.0
 
-[node name="echo" type="Sprite2D"]
+[node name="echo" type="Sprite2D" unique_id=1681977033]
 z_index = 10
 material = SubResource("ShaderMaterial_wo815")
 texture = ExtResource("2_wo815")
