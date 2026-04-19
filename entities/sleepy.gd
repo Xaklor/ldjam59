@@ -5,6 +5,8 @@ extends Area2D
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 @onready var wake_up_sound = $AudioStreamPlayer
 
+var echo = preload("res://entities/echo.gd")
+
 var asleep: bool = true
 var grid_pos: Vector2i
 
@@ -48,4 +50,6 @@ func take_damage(amount):
 # called when the player uses a ping
 func on_player_ping():
 	wake_up_sound.play()
+	echo.spawn(get_tree(), global_position, Color.BROWN)
+	
 	asleep = false

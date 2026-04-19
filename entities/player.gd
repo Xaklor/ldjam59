@@ -3,6 +3,8 @@ extends Area2D
 @onready var main = get_tree().get_root().get_node("main")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 @export var item_menu: PackedScene
+
+var echo = preload("res://entities/echo.gd")
 signal ping
 signal end_turn
 
@@ -48,6 +50,7 @@ func _unhandled_input(event: InputEvent):
 			moved = true
 	if event.is_action_pressed("face_button_up"):
 		ping.emit()
+		echo.spawn(get_tree(), global_position, Color.html("#89d9fc"))
 		acted = true
 	if event.is_action_pressed("face_button_right"):
 		var menu = item_menu.instantiate()
