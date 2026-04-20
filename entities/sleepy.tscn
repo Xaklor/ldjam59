@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://buh4g4vo185mb" path="res://entities/sleepy.gd" id="1_0wkjs"]
 [ext_resource type="AudioStream" uid="uid://dg5vf1fq6iow5" path="res://assets/sleeper-wake-up.wav" id="2_5o7pj"]
+[ext_resource type="Texture2D" uid="uid://rhgh2bjf7a14" path="res://assets/sleeper-active.png" id="3_5o7pj"]
+[ext_resource type="Texture2D" uid="uid://cvawmeqeaayi1" path="res://assets/sleeper-inactive.png" id="4_54rl5"]
 [ext_resource type="AudioStream" uid="uid://cm2bpqwnjywrw" path="res://assets/death.wav" id="5_54rl5"]
-[ext_resource type="Texture2D" uid="uid://jdl2yaa7g4ti" path="res://assets/sleeper-active.png" id="3_5o7pj"]
-[ext_resource type="Texture2D" uid="uid://dr0qs4hwtrmyr" path="res://assets/sleeper-inactive.png" id="4_54rl5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmyvh"]
 size = Vector2(32, 32)
@@ -28,20 +28,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="sleepy" type="Area2D" unique_id=1253281695 groups=["enemies", "sight toggleable"]]
+[node name="sleepy" type="Area2D" unique_id=58260980 groups=["enemies"]]
 script = ExtResource("1_0wkjs")
 
-[node name="hitbox" type="CollisionShape2D" parent="." unique_id=111923979]
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=2008030952]
 shape = SubResource("RectangleShape2D_bmyvh")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1953368377]
-stream = ExtResource("2_bmyvh")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=109154816]
+stream = ExtResource("2_5o7pj")
 
-[node name="icon" type="AnimatedSprite2D" parent="." unique_id=1919113868]
+[node name="icon" type="AnimatedSprite2D" parent="." unique_id=1547201403]
 visible = false
 sprite_frames = SubResource("SpriteFrames_5pdnw")
 animation = &"asleep"
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=1808676892]
+[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=817389021]
 stream = ExtResource("5_54rl5")
 volume_db = 8.0
