@@ -25,7 +25,7 @@ var max_hp: int = 20
 var sight_turns: int = 0
 
 func _ready():
-	fetch_saved_data()
+	# fetch_saved_data()
 	grid_pos = tile_map.local_to_map(position)
 	update_hud()
 	
@@ -130,7 +130,7 @@ func take_damage(amount):
 				break
 		
 		if not saved:
-			PlayerData.reset()
+			# PlayerData.reset()
 			get_tree().change_scene_to_file("res://level/lose.tscn")
 	
 func update_hud():
@@ -195,17 +195,17 @@ func use_item(effect):
 	
 	end_turn.emit()
 	
-func save_data():
-	PlayerData.hp = hp 
-	PlayerData.max_hp = max_hp
-	PlayerData.items = items.duplicate(true)
-	PlayerData.sight_turns = sight_turns
-	PlayerData.facing = facing
-	
-func fetch_saved_data():
-	hp = PlayerData.hp  
-	max_hp = PlayerData.max_hp 
-	items = PlayerData.items.duplicate(true)
-	sight_turns = PlayerData.sight_turns
-	facing = PlayerData.facing  
+# func save_data():
+# 	PlayerData.hp = hp 
+# 	PlayerData.max_hp = max_hp
+# 	PlayerData.items = items.duplicate(true)
+# 	PlayerData.sight_turns = sight_turns
+# 	PlayerData.facing = facing
+# 	
+# func fetch_saved_data():
+# 	hp = PlayerData.hp  
+# 	max_hp = PlayerData.max_hp 
+# 	items = PlayerData.items.duplicate(true)
+# 	sight_turns = PlayerData.sight_turns
+# 	facing = PlayerData.facing  
 	

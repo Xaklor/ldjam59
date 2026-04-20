@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dum3obnayuttu" path="res://level/dungeon.gd" id="1_jv6ym"]
 [ext_resource type="Texture2D" uid="uid://nsmgi3lrl6cs" path="res://assets/tileset 2.png" id="2_4rako"]
+[ext_resource type="PackedScene" uid="uid://iosdxywq1swa" path="res://entities/loot.tscn" id="2_gliw6"]
 [ext_resource type="Script" uid="uid://dgvomg2wf7ra1" path="res://level/tile_map.gd" id="3_4rako"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jv6ym"]
@@ -50,15 +51,20 @@ texture_region_size = Vector2i(32, 32)
 2:4/0/custom_data_0 = true
 3:4/0 = 0
 3:4/0/custom_data_0 = true
+4:2/0 = 0
+4:2/0/custom_data_1 = true
 
 [sub_resource type="TileSet" id="TileSet_4rako"]
 tile_size = Vector2i(32, 32)
 custom_data_layer_0/name = "solid"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "stairs"
+custom_data_layer_1/type = 1
 sources/1 = SubResource("TileSetAtlasSource_jv6ym")
 
 [node name="dungeon" type="Node2D" unique_id=636243078]
 script = ExtResource("1_jv6ym")
+loot_scene = ExtResource("2_gliw6")
 
 [node name="tile_map" type="TileMapLayer" parent="." unique_id=2093585996]
 tile_set = SubResource("TileSet_4rako")

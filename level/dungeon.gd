@@ -5,6 +5,8 @@ extends Node2D
 @onready var player = main.get_node("player")
 
 var stabby = preload("res://entities/stabby.tscn")
+var sleepy = preload("res://entities/sleepy.tscn")
+@export var loot_scene: PackedScene
 
 const WIDTH = 80
 const HEIGHT = 50
@@ -29,7 +31,7 @@ func _ready():
 	tile_map.initialize()
 	var start_pos = tile_map.map_to_local(rooms[0].get_center())
 	player.global_position = start_pos
-	generate_enemies.call_deferred()
+	generate_entities.call_deferred()
 	
 
 func generate_dungeon():
@@ -48,17 +50,24 @@ func generate_dungeon():
 		for y in range(HEIGHT):
 			tile_map.set_cell(Vector2i(x, y), 1, grid[x][y])
 
-func generate_enemies():
+func generate_entities():
 	for room in rooms.slice(1, rooms.size()):
-		var successes = 0
+		var num_enemies = randi() % 3
+		var num_items = randi() % 3
 		var used_pos = []
-		while (randf() < pow(0.7, successes + 1)):
+		for c in num_enemies:
 			var spawn_pos = rand_point(room)
 			while (spawn_pos in used_pos):
 				spawn_pos = rand_point(room)
 			spawn_enemy(spawn_pos)
 			used_pos.append(spawn_pos)
-			successes += 1
+			
+		for c in num_items:
+			var spawn_pos = rand_point(room)
+			while (spawn_pos in used_pos):
+				spawn_pos = rand_point(room)
+			spawn_item(spawn_pos)
+			used_pos.append(spawn_pos)
 
 func rand_point(room):
 	var x = randi_range(room.position.x, room.end.x - 1)
@@ -66,9 +75,59 @@ func rand_point(room):
 	return Vector2i(x, y)
 
 func spawn_enemy(pos):
-	var enemy = stabby.instantiate()
+	var enemy
+	if randi() % 2 == 0:
+		enemy = stabby.instantiate()
+	else:
+		enemy = sleepy.instantiate()
 	enemy.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_map.astar.cell_size
 	main.add_child(enemy)
+	
+func spawn_item(pos):
+	var loot = loot_scene.instantiate()
+	match randi() % 9:
+		0:
+			loot.item_name = "repair kit"
+			loot.item_effect = 0
+		1:
+			loot.item_name = "signal booster"
+			loot.item_effect = 1
+		2:
+			loot.item_name = "mysterious totem"
+			loot.item_effect = 3
+		3:
+			loot.item_name = "plating kit"
+			loot.item_effect = 4
+		4:
+			loot.item_name = "glass dust"
+			loot.item_effect = 5
+		5:
+			loot.item_name = "dirk"
+			loot.item_is_equipment = true
+			var temp: Array[Vector2i] = [Vector2i(1, 0)]
+			loot.item_attack_area = temp
+			loot.item_attack_damage = 2
+		6:
+			loot.item_name = "wide sword"
+			loot.item_is_equipment = true
+			var temp: Array[Vector2i] = [Vector2i(1, 0), Vector2i(1, -1), Vector2i(1, 1)]
+			loot.item_attack_area = temp
+			loot.item_attack_damage = 4
+		7:
+			loot.item_name = "long sword"
+			loot.item_is_equipment = true
+			var temp: Array[Vector2i] = [Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+			loot.item_attack_area = temp
+			loot.item_attack_damage = 4
+		8:
+			loot.item_name = "gilded dirk"
+			loot.item_is_equipment = true
+			var temp: Array[Vector2i] = [Vector2i(1, 0)]
+			loot.item_attack_area = temp
+			loot.item_attack_damage = 6
+	
+	loot.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_map.astar.cell_size
+	main.add_child(loot)
 	
 func initialize_grid():
 	for x in range(WIDTH):
@@ -110,7 +169,7 @@ func generate_corridors(rooms):
 		
 		for i in range(abs(start.y - end.y)):
 			y += dy 
-			grid[x][y] = FLOOR		
+			grid[x][y] = FLOOR
 	
 
 # super inefficient kruskal's algorithm

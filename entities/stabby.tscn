@@ -14,6 +14,7 @@ script = ExtResource("1_1pa3r")
 shape = SubResource("RectangleShape2D_4xful")
 
 [node name="icon" type="Sprite2D" parent="." unique_id=520154180]
+visible = false
 texture = ExtResource("2_emnyu")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=143771100]

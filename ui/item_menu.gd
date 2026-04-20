@@ -74,7 +74,9 @@ func update_tooltip():
 		if item.is_equipment:
 			match item.name:
 				"dirk": $tooltip.text = "a dirk. does 2 damage."
-				"dirk of cronus": $tooltip.text = "the cooler dirk. does 5 damage."
+				"wide sword": $tooletip.text = "a large sword ideal for sweeping attacks. does 4 damage."
+				"long sword": $tooltip.text = "a large sword with a lot of reach. does 4 damage."
+				"gilded dirk": $tooltip.text = "the cooler dirk. does 6 damage."
 				_: $tooltip.text = "moooooom! atlas got into the tooltips again!"
 		else:
 			match items[slot_num].effect:

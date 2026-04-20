@@ -37,7 +37,7 @@ func step():
 	tile_map.astar.set_point_solid(grid_pos, false)
 	var path = tile_map.astar.get_id_path(curr_pos, player_pos)
 	# player is not adjacent to this enemy
-	if path.size() > 2 and path.size() != 0 and not ready_to_attack:
+	if path.size() > 2 and path.size() != 0 and path.size() <= 10 and not ready_to_attack:
 		var next_pos = tile_map.map_to_local(path[1])
 		grid_pos = path[1]
 		position = next_pos
@@ -47,7 +47,7 @@ func step():
 		atk.spawn(get_tree(), player.global_position)
 		player.take_damage(attack)
 		ready_to_attack = false
-	elif not ready_to_attack and path.size() != 0:
+	elif not ready_to_attack and path.size() != 0 and path.size() <= 10:
 		echo.spawn(get_tree(), global_position, Color.RED, ping_icon)
 		ready_to_attack = true
 	else:
