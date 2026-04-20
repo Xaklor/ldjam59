@@ -15,9 +15,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="LDjam59"
-run/main_scene="uid://clkra6f48ad11"
+run/main_scene="uid://yyvtbpgfecja"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerData="*uid://dl00sexvgapne"
 
 [global_group]
 

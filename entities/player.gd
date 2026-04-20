@@ -25,12 +25,8 @@ var max_hp: int = 20
 var sight_turns: int = 0
 
 func _ready():
+	fetch_saved_data()
 	grid_pos = tile_map.local_to_map(position)
-	items = [Lib.Item.new("repair kit", 0), 
-	Lib.Item.new("signal booster", 1),
-	Lib.Item.new("charm bracelet", 8),
-	Lib.Item.new("dirk", 0, true, [Vector2i(1, 0)], 2), 
-	Lib.Item.new("dirk of cronus", 0, true, [Vector2i(1, 0), Vector2i(2, 0)], 5)]
 	update_hud()
 	
 func _process(delta: float):
@@ -134,6 +130,7 @@ func take_damage(amount):
 				break
 		
 		if not saved:
+			PlayerData.reset()
 			get_tree().change_scene_to_file("res://level/lose.tscn")
 	
 func update_hud():
@@ -197,4 +194,18 @@ func use_item(effect):
 			pass # damage all enemies in room
 	
 	end_turn.emit()
+	
+func save_data():
+	PlayerData.hp = hp 
+	PlayerData.max_hp = max_hp
+	PlayerData.items = items.duplicate(true)
+	PlayerData.sight_turns = sight_turns
+	PlayerData.facing = facing
+	
+func fetch_saved_data():
+	hp = PlayerData.hp  
+	max_hp = PlayerData.max_hp 
+	items = PlayerData.items.duplicate(true)
+	sight_turns = PlayerData.sight_turns
+	facing = PlayerData.facing  
 	
