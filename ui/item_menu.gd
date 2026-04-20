@@ -23,16 +23,19 @@ func _ready():
 		entry.add_child(icon)
 		entry.add_child(label)
 		$menu_list.add_child(entry)
+		update_tooltip()
 	
 func _input(event: InputEvent):
 	if event.is_action_pressed("move_down"):
 		if slot_num < items.size() - 1:
 			slot_num += 1
 			$selector.position.y += 36
+			update_tooltip()
 	if event.is_action_pressed("move_up"):
 		if slot_num > 0:
 			slot_num -= 1
 			$selector.position.y -= 36
+			update_tooltip()
 	if event.is_action_pressed("face_button_down") and items.size() > 0:
 		if items[slot_num].is_equipment:
 			for idx in items.size():
@@ -64,3 +67,23 @@ func _input(event: InputEvent):
 	if event.is_action_pressed("face_button_up"):
 		queue_free()
 	get_viewport().set_input_as_handled()
+	
+func update_tooltip():
+	if items.size() > 0:
+		var item = items[slot_num]
+		if item.is_equipment:
+			match item.name:
+				"dirk": $tooltip.text = "a dirk. does 2 damage."
+				"dirk of cronus": $tooltip.text = "the cooler dirk. does 5 damage."
+				_: $tooltip.text = "moooooom! atlas got into the tooltips again!"
+		else:
+			match items[slot_num].effect:
+				0: $tooltip.text = "fully restores lost HP."
+				1: $tooltip.text = "restores sight for 20 turns, allowing you to directly see enemies and items."
+				2: $tooltip.text = "cheater."
+				3: $tooltip.text = "unusable. restores you to full HP upon death once."
+				4: $tooltip.text = "permanently increases max HP by 5."
+				5: $tooltip.text = "inflicts 20 damage on the enemy you are currently facing."
+				7: $tooltip.text = "inflicts 10 damage on all enemies within 10 spaces."
+				8: $tooltip.text = "unusable. a good luck charm."
+				_: $tooltip.text = "bananarama_atlas"

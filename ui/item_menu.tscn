@@ -9,16 +9,37 @@ script = ExtResource("1_xv3ax")
 loot_scene = ExtResource("2_sq0qv")
 
 [node name="color" type="ColorRect" parent="." unique_id=1016190179]
-offset_right = 448.0
-offset_bottom = 512.0
+offset_top = 56.0
+offset_right = 576.0
+offset_bottom = 408.0
 color = Color(0.19, 0.19, 0.19, 0.494118)
 
 [node name="menu_list" type="VBoxContainer" parent="." unique_id=1248817488]
 offset_left = 56.0
-offset_top = 16.0
-offset_right = 432.0
-offset_bottom = 496.0
+offset_top = 72.0
+offset_right = 256.0
+offset_bottom = 392.0
 
 [node name="selector" type="Sprite2D" parent="." unique_id=174397192]
-position = Vector2(32, 32)
+position = Vector2(32, 88)
 texture = ExtResource("3_sq0qv")
+
+[node name="controls" type="Label" parent="." unique_id=209634193]
+anchors_preset = -1
+offset_left = 280.0
+offset_top = 72.0
+offset_right = 560.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(0.09019608, 0.4, 0.25490198, 1)
+text = "up/down to navigate
+v to use item
+c to drop item
+x to close menu"
+
+[node name="tooltip" type="Label" parent="." unique_id=1666372685]
+offset_left = 280.0
+offset_top = 192.0
+offset_right = 560.0
+offset_bottom = 392.0
+theme_override_colors/font_color = Color(0.18039216, 0.8, 0.5058824, 1)
+autowrap_mode = 2
