@@ -41,24 +41,28 @@ func _unhandled_input(event: InputEvent):
 	var acted = false
 	if event.is_action_pressed("move_down"):
 		facing = 1
+		update_facing()
 		if !tile_map.astar.is_point_solid(grid_pos + Vector2i(0, 1)):
 			position.y += tile_map.tile_set.tile_size.y
 			grid_pos.y += 1
 			moved = true
 	if event.is_action_pressed("move_up"):
 		facing = 3
+		update_facing()
 		if !tile_map.astar.is_point_solid(grid_pos + Vector2i(0, -1)):
 			position.y -= tile_map.tile_set.tile_size.y
 			grid_pos.y -= 1
 			moved = true
 	if event.is_action_pressed("move_left"):
 		facing = 2
+		update_facing()
 		if !tile_map.astar.is_point_solid(grid_pos + Vector2i(-1, 0)):
 			position.x -= tile_map.tile_set.tile_size.x
 			grid_pos.x -= 1
 			moved = true
 	if event.is_action_pressed("move_right"):
 		facing = 0
+		update_facing()
 		if !tile_map.astar.is_point_solid(grid_pos + Vector2i(1, 0)):
 			position.x += tile_map.tile_set.tile_size.x
 			grid_pos.x += 1
@@ -127,10 +131,15 @@ func take_damage(amount):
 				break
 		
 		if not saved:
-			print("owie owie ow I've died")
+			get_tree().change_scene_to_file("res://level/lose.tscn")
 	
 func update_hud():
 	$Camera2D/Hud.find_child("hp_bar").value = (float(hp) / max_hp) * 100
+	
+func update_facing():
+	for indicator in $facing_indicators.get_children():
+		indicator.visible = false
+	$facing_indicators.get_child(facing).visible = true
 	
 func use_item(effect):
 	match effect:

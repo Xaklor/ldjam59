@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://ctya5ljf215qu"]
+
+[ext_resource type="Script" uid="uid://nwghc6wqx18a" path="res://level/lose.gd" id="1_adeiv"]
+
+[node name="lose" type="Node2D" unique_id=628129597]
+script = ExtResource("1_adeiv")
+
+[node name="color_bg" type="ColorRect" parent="." unique_id=1057872326]
+offset_left = -96.0
+offset_top = -56.0
+offset_right = 1280.0
+offset_bottom = 728.0
+color = Color(0, 0, 0, 1)
+
+[node name="game_over" type="Label" parent="." unique_id=2042369644]
+offset_left = 280.0
+offset_top = 192.0
+offset_right = 820.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(0.18039216, 0.8, 0.5058824, 1)
+theme_override_font_sizes/font_size = 100
+text = "Game Over."
+
+[node name="retry" type="Label" parent="." unique_id=1083773264]
+offset_left = 232.0
+offset_top = 384.0
+offset_right = 880.0
+offset_bottom = 479.0
+theme_override_colors/font_color = Color(0.18039216, 0.8, 0.5058824, 1)
+theme_override_font_sizes/font_size = 40
+text = "press V or gamepad A to retry.
+press C or gamepad X to quit."
+
+[node name="cursor" type="ColorRect" parent="." unique_id=1040634458]
+offset_left = 816.0
+offset_top = 272.0
+offset_right = 872.0
+offset_bottom = 280.0
+color = Color(0.18039216, 0.8, 0.5058824, 1)

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://clkra6f48ad11"]
+
+[ext_resource type="Script" uid="uid://b7ydgkfla8n7f" path="res://level/title_screen.gd" id="1_vcf6p"]
+
+[node name="title_screen" type="Node2D" unique_id=1243997495]
+script = ExtResource("1_vcf6p")
+
+[node name="color_bg" type="ColorRect" parent="." unique_id=1055276394]
+offset_left = -72.0
+offset_top = -64.0
+offset_right = 1256.0
+offset_bottom = 712.0
+color = Color(0, 0, 0, 1)
+
+[node name="title" type="Label" parent="." unique_id=557644686]
+offset_left = 96.0
+offset_top = 192.0
+offset_right = 1068.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(0.18039216, 0.8, 0.5058824, 1)
+theme_override_font_sizes/font_size = 100
+text = "Video Signal Lost."
+
+[node name="caption" type="Label" parent="." unique_id=392688531]
+offset_left = 256.0
+offset_top = 384.0
+offset_right = 883.0
+offset_bottom = 430.0
+theme_override_colors/font_color = Color(0.18039216, 0.8, 0.5058824, 1)
+theme_override_font_sizes/font_size = 40
+text = "Press V or gamepad A to start"
+
+[node name="cursor" type="ColorRect" parent="." unique_id=1853785885]
+offset_left = 1064.0
+offset_top = 272.0
+offset_right = 1120.0
+offset_bottom = 280.0
+color = Color(0.18039216, 0.8, 0.5058824, 1)
