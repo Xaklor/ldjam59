@@ -38,7 +38,6 @@ func next_floor():
 		enemy.queue_free()
 	
 	for item in get_tree().get_nodes_in_group("items"):
-		print(item)
 		item.queue_free()
 		
 	generate_dungeon()
@@ -51,14 +50,14 @@ func next_floor():
 	
 	curr_floor += 1
 	
-	for y in tile_map.astar.region.end.y:
-		var out = ""
-		for x in tile_map.astar.region.end.x:
-			if tile_map.astar.is_point_solid(Vector2i(x, y)):
-				out += "#"
-			else:
-				out += "."
-		print(out)
+#	for y in tile_map.astar.region.end.y:
+#		var out = ""
+#		for x in tile_map.astar.region.end.x:
+#			if tile_map.astar.is_point_solid(Vector2i(x, y)):
+#				out += "#"
+#			else:
+#				out += "."
+#		print(out)
 		
 func _input(event):
 	if player.grid_pos == stairs_pos:

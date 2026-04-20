@@ -27,7 +27,7 @@ var sight_turns: int = 0
 func _ready():
 	items = [
 		Lib.Item.new("repair kit", 0), 
-		Lib.Item.new("signal booster", 1),
+		Lib.Item.new("charm bracelet", 8),
 	]
 	grid_pos = tile_map.local_to_map(position)
 	update_hud()

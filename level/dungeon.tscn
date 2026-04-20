@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d1tmh55k56vsx"]
 
 [ext_resource type="Script" uid="uid://dum3obnayuttu" path="res://level/dungeon.gd" id="1_jv6ym"]
-[ext_resource type="Texture2D" uid="uid://drsxmyfaq658" path="res://assets/tileset 2.png" id="2_4rako"]
+[ext_resource type="Texture2D" uid="uid://nsmgi3lrl6cs" path="res://assets/tileset 2.png" id="2_4rako"]
 [ext_resource type="PackedScene" uid="uid://iosdxywq1swa" path="res://entities/loot.tscn" id="2_gliw6"]
 [ext_resource type="Script" uid="uid://dgvomg2wf7ra1" path="res://level/tile_map.gd" id="3_4rako"]
 
@@ -65,6 +65,13 @@ sources/1 = SubResource("TileSetAtlasSource_jv6ym")
 [node name="dungeon" type="Node2D" unique_id=636243078]
 script = ExtResource("1_jv6ym")
 loot_scene = ExtResource("2_gliw6")
+
+[node name="blackground" type="ColorRect" parent="." unique_id=259917028]
+offset_left = -920.0
+offset_top = -688.0
+offset_right = 2400.0
+offset_bottom = 1312.0
+color = Color(0, 0, 0, 1)
 
 [node name="tile_map" type="TileMapLayer" parent="." unique_id=2093585996]
 tile_set = SubResource("TileSet_4rako")

@@ -10,7 +10,7 @@ script = ExtResource("1_ejwgg")
 offset_top = 56.0
 offset_right = 480.0
 offset_bottom = 176.0
-color = Color(0.19, 0.19, 0.19, 0.494118)
+color = Color(0, 0, 0, 0.69411767)
 
 [node name="menu_list" type="VBoxContainer" parent="." unique_id=1820776452]
 offset_left = 56.0
@@ -36,14 +36,14 @@ texture = ExtResource("1_50142")
 
 [node name="controls" type="Label" parent="." unique_id=334105935]
 anchors_preset = -1
-offset_left = 280.0
+offset_left = 224.0
 offset_top = 72.0
 offset_right = 560.0
 offset_bottom = 173.0
 theme_override_colors/font_color = Color(0.09019608, 0.4, 0.25490198, 1)
 text = "up/down to navigate
-v to select
-x to close menu"
+C/gamepad A to select
+X/gamepad X to close menu"
 
 [node name="tooltip" type="Label" parent="." unique_id=861061995]
 offset_left = 280.0
