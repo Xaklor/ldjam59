@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xful"]
 size = Vector2(32, 32)
 
-[node name="stabby" type="Area2D" unique_id=1631536211 groups=["enemies"]]
+[node name="stabby" type="Area2D" unique_id=1631536211 groups=["enemies", "sight toggleable"]]
 script = ExtResource("1_1pa3r")
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=292843490]
