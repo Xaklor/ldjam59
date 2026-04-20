@@ -28,7 +28,8 @@ offset_right = 883.0
 offset_bottom = 430.0
 theme_override_colors/font_color = Color(0.18039216, 0.8, 0.5058824, 1)
 theme_override_font_sizes/font_size = 40
-text = "Press V or gamepad A to start"
+text = "Press V or gamepad A to start
+Press C or gamepad X to quit"
 
 [node name="cursor" type="ColorRect" parent="." unique_id=1853785885]
 offset_left = 1064.0

@@ -3,6 +3,7 @@ extends Area2D
 @onready var main = get_tree().get_root().get_node("main")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 @export var item_menu: PackedScene
+@export var pause_menu: PackedScene
 @onready var hurt_sound = $DamageSound
 @onready var atk_sound = $AttackSound
 @onready var echo_sound = $EchoSound
@@ -76,6 +77,9 @@ func _unhandled_input(event: InputEvent):
 		var menu = item_menu.instantiate()
 		menu.items = items
 		menu.player = self
+		main.add_child(menu)
+	if event.is_action_pressed("pause"):
+		var menu = pause_menu.instantiate()
 		main.add_child(menu)
 	if event.is_action_pressed("face_button_down"):
 		acted = true

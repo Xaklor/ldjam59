@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c8kp7styilvbo"]
+
+[ext_resource type="Texture2D" uid="uid://gq4d16b1gjkr" path="res://assets/selector.png" id="1_50142"]
+[ext_resource type="Script" uid="uid://r0ot5ihafduc" path="res://ui/pause_menu.gd" id="1_ejwgg"]
+
+[node name="pause_menu" type="CanvasLayer" unique_id=1714900686]
+script = ExtResource("1_ejwgg")
+
+[node name="color" type="ColorRect" parent="." unique_id=872859995]
+offset_top = 56.0
+offset_right = 480.0
+offset_bottom = 176.0
+color = Color(0.19, 0.19, 0.19, 0.494118)
+
+[node name="menu_list" type="VBoxContainer" parent="." unique_id=1820776452]
+offset_left = 56.0
+offset_top = 72.0
+offset_right = 256.0
+offset_bottom = 160.0
+
+[node name="Label" type="Label" parent="menu_list" unique_id=18740214]
+layout_mode = 2
+text = "resume"
+
+[node name="Label2" type="Label" parent="menu_list" unique_id=1854771739]
+layout_mode = 2
+text = "quit to title"
+
+[node name="Label3" type="Label" parent="menu_list" unique_id=2037380567]
+layout_mode = 2
+text = "exit game"
+
+[node name="selector" type="Sprite2D" parent="." unique_id=475900266]
+position = Vector2(32, 83)
+texture = ExtResource("1_50142")
+
+[node name="controls" type="Label" parent="." unique_id=334105935]
+anchors_preset = -1
+offset_left = 280.0
+offset_top = 72.0
+offset_right = 560.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(0.09019608, 0.4, 0.25490198, 1)
+text = "up/down to navigate
+v to select
+x to close menu"
+
+[node name="tooltip" type="Label" parent="." unique_id=861061995]
+offset_left = 280.0
+offset_top = 192.0
+offset_right = 560.0
+offset_bottom = 392.0
+theme_override_colors/font_color = Color(0.18039216, 0.8, 0.5058824, 1)
+autowrap_mode = 2
