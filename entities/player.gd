@@ -6,7 +6,6 @@ extends Area2D
 @onready var hurt_sound = $DamageSound
 @onready var atk_sound = $AttackSound
 @onready var echo_sound = $EchoSound
-@onready var death_sound = $DeathSound
 const PING_RANGE: int = 8
 
 

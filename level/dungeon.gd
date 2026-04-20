@@ -29,8 +29,7 @@ func _ready():
 	tile_map.initialize()
 	var start_pos = tile_map.map_to_local(rooms[0].get_center())
 	player.global_position = start_pos
-	generate_enemies()
-	spawn_enemy(rooms[0].get_center())
+	generate_enemies.call_deferred()
 	
 
 func generate_dungeon():
@@ -68,12 +67,11 @@ func rand_point(room):
 
 func spawn_enemy(pos):
 	var enemy = stabby.instantiate()
-	enemy.position = tile_map.map_to_local(pos)
 	main.add_child(enemy)
-	print("Spawning enemy at ", enemy.global_position)
-	print("Player at ",  player.global_position)
-		
+	enemy.global_position = tile_map.map_to_local(pos)
+	enemy.grid_pos = pos
 
+	
 func initialize_grid():
 	for x in range(WIDTH):
 		grid.append([])
