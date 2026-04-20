@@ -1,22 +1,24 @@
 [gd_scene format=3 uid="uid://ddcxe0s42qvde"]
 
 [ext_resource type="Script" uid="uid://b714bgmh8um26" path="res://ui/item_menu.gd" id="1_xv3ax"]
+[ext_resource type="PackedScene" uid="uid://iosdxywq1swa" path="res://entities/loot.tscn" id="2_sq0qv"]
 [ext_resource type="Texture2D" uid="uid://gq4d16b1gjkr" path="res://assets/selector.png" id="3_sq0qv"]
 
-[node name="item_menu" type="CanvasLayer"]
+[node name="item_menu" type="CanvasLayer" unique_id=1084769955]
 script = ExtResource("1_xv3ax")
+loot_scene = ExtResource("2_sq0qv")
 
-[node name="color" type="ColorRect" parent="."]
+[node name="color" type="ColorRect" parent="." unique_id=1016190179]
 offset_right = 448.0
 offset_bottom = 512.0
 color = Color(0.19, 0.19, 0.19, 0.494118)
 
-[node name="menu_list" type="VBoxContainer" parent="."]
+[node name="menu_list" type="VBoxContainer" parent="." unique_id=1248817488]
 offset_left = 56.0
 offset_top = 16.0
 offset_right = 432.0
 offset_bottom = 496.0
 
-[node name="selector" type="Sprite2D" parent="."]
+[node name="selector" type="Sprite2D" parent="." unique_id=174397192]
 position = Vector2(32, 32)
 texture = ExtResource("3_sq0qv")

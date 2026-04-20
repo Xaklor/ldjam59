@@ -16,4 +16,11 @@ class Item:
 		self.attack_damage = attack_damage
 		# ITEM EFFECTS:
 		# 0: repair kit (restore hp)
+		# 1: signal booster (temporary sight)
+		# 2: map scanner (reveals map)
+		# 3: mysterious totem (one time revive)
+		# 4: plating kit (max hp boost)
+		# 5: glass dust (damages enemy in front)
+		# 7: C4 (hits every enemy in the room)
+		# 8: charm bracelet (no effect)
 		

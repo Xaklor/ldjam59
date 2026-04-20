@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://r5mfptjb57cb"]
+[gd_scene format=3 uid="uid://r5mfptjb57cb"]
 
 [ext_resource type="Script" uid="uid://buh4g4vo185mb" path="res://entities/sleepy.gd" id="1_0wkjs"]
 [ext_resource type="AudioStream" uid="uid://c8r7oqvty6e61" path="res://assets/random.wav" id="2_bmyvh"]
@@ -27,16 +27,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="sleepy" type="Area2D" groups=["enemies"]]
+[node name="sleepy" type="Area2D" unique_id=1253281695 groups=["enemies", "sight toggleable"]]
 script = ExtResource("1_0wkjs")
 
-[node name="hitbox" type="CollisionShape2D" parent="."]
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=111923979]
 shape = SubResource("RectangleShape2D_bmyvh")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1953368377]
 stream = ExtResource("2_bmyvh")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="icon" type="AnimatedSprite2D" parent="." unique_id=1919113868]
 visible = false
 sprite_frames = SubResource("SpriteFrames_5pdnw")
 animation = &"asleep"

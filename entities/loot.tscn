@@ -3,7 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://diollos0mfjte" path="res://assets/orb.png" id="1_44sxh"]
 [ext_resource type="Script" uid="uid://bnq64g7u2ucjv" path="res://entities/loot.gd" id="2_pp0ru"]
 
-[node name="loot" type="Sprite2D"]
+[node name="loot" type="Node2D" unique_id=1922696490 groups=["sight toggleable"]]
+script = ExtResource("2_pp0ru")
+item_name = "repair kit"
+
+[node name="icon" type="Sprite2D" parent="." unique_id=1425926458]
 visible = false
 texture = ExtResource("1_44sxh")
-script = ExtResource("2_pp0ru")

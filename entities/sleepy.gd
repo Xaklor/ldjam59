@@ -4,7 +4,7 @@ extends Area2D
 @onready var player = main.get_node("player")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 @onready var wake_up_sound = $AudioStreamPlayer
-@onready var animation = $AnimatedSprite2D
+@onready var animation = $icon
 
 var echo = preload("res://ui/echo.gd")
 var atk = preload("res://ui/attack_animation.gd")
