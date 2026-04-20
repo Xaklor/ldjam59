@@ -8,13 +8,13 @@ var stabby = preload("res://entities/stabby.tscn")
 var sleepy = preload("res://entities/sleepy.tscn")
 @export var loot_scene: PackedScene
 
-const WIDTH = 80
-const HEIGHT = 50
+const WIDTH = 40
+const HEIGHT = 25
 
 const ROOM_MIN = 5
 const ROOM_MAX  = 10
-const MIN_ROOMS = 15
-const MAX_ROOMS = 30
+const MIN_ROOMS = 4
+const MAX_ROOMS = 7
 
 const WALL = Vector2i(4, 0)
 const FLOOR = Vector2i(4,1)
@@ -27,12 +27,32 @@ var grid = []
 var rooms = []
 
 func _ready():
+	next_floor()
+
+func next_floor():
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.queue_free()
+		
 	generate_dungeon()
 	tile_map.initialize()
-	var start_pos = tile_map.map_to_local(rooms[0].get_center())
+	var start = rooms[0].get_center()
+	var start_pos = tile_map.map_to_local(start)
 	player.global_position = start_pos
+	player.grid_pos = start
 	generate_entities.call_deferred()
 	
+	for y in tile_map.astar.region.end.y:
+		var out = ""
+		for x in tile_map.astar.region.end.x:
+			if tile_map.astar.is_point_solid(Vector2i(x, y)):
+				out += "#"
+			else:
+				out += "."
+		print(out)
+		
+func _input(event):
+	if event.is_action_pressed("move_down"):
+		next_floor()
 
 func generate_dungeon():
 	initialize_grid()
@@ -130,6 +150,8 @@ func spawn_item(pos):
 	main.add_child(loot)
 	
 func initialize_grid():
+	grid.clear()
+	rooms.clear()
 	for x in range(WIDTH):
 		grid.append([])
 		for y in range(HEIGHT):

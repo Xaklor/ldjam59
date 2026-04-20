@@ -1,9 +1,10 @@
 extends TileMapLayer
 
-var astar = AStarGrid2D.new()
+var astar: AStarGrid2D
 var loot_map: Array[Array]
 
 func initialize():
+	astar = AStarGrid2D.new()
 	var map_end = get_used_rect().end
 	astar.region = Rect2i(Vector2i.ZERO, map_end)
 	astar.cell_size = tile_set.tile_size

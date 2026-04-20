@@ -25,7 +25,10 @@ var max_hp: int = 20
 var sight_turns: int = 0
 
 func _ready():
-	# fetch_saved_data()
+	items = [
+		Lib.Item.new("repair kit", 0), 
+		Lib.Item.new("signal booster", 1),
+	]
 	grid_pos = tile_map.local_to_map(position)
 	update_hud()
 	
