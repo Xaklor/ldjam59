@@ -15,10 +15,12 @@ var grid_pos: Vector2i
 var facing: int = 0
 var items: Array[Lib.Item]
 var hp: int = 20
+var max_hp: int = 20
 
 func _ready():
 	grid_pos = tile_map.local_to_map(position)
 	items = [Lib.Item.new("banana", 0), Lib.Item.new("bananarang", 0), Lib.Item.new("dirk", 0, true, [Vector2i(1, 0)], 2), Lib.Item.new("dirk of cronus", 0, true, [Vector2i(1, 0), Vector2i(2, 0)], 5)]
+	update_hud()
 	
 func _process(delta: float):
 	pass
@@ -95,4 +97,10 @@ func _unhandled_input(event: InputEvent):
 		end_turn.emit()
 
 func take_damage(amount):
-	print("I've been shot, I've been shot!: " + str(amount))
+	hp -= amount
+	update_hud()
+	if hp <= 0:
+		print("owie owie ow I've died")
+	
+func update_hud():
+	$Camera2D/Hud.find_child("hp_bar").value = (float(hp) / max_hp) * 100

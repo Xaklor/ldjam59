@@ -33,6 +33,7 @@ func step():
 	if hp <= 0:
 		tile_map.astar.set_point_solid(grid_pos, false)
 		queue_free()
+		return
 	# sleepy is strong but passive until pinged
 	if !asleep:
 		var curr_pos = tile_map.local_to_map(position)
@@ -79,3 +80,5 @@ func take_damage(amount):
 func on_player_ping(pos, range):
 	if abs(pos.x - grid_pos.x) + abs(pos.y - grid_pos.y) <= range:
 		pinged = true
+		
+		
