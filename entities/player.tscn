@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cnx1by327ssap"]
 
-[ext_resource type="Script" uid="uid://bmdxia6ckn02f" path="res://entities/player.gd" id="1_merdl"]
+[ext_resource type="Script" uid="uid://chritfr3aps42" path="res://entities/player.gd" id="1_merdl"]
 [ext_resource type="PackedScene" uid="uid://ddcxe0s42qvde" path="res://ui/item_menu.tscn" id="2_b0kkn"]
 [ext_resource type="PackedScene" uid="uid://c8kp7styilvbo" path="res://ui/pause_menu.tscn" id="3_dchgp"]
 [ext_resource type="Texture2D" uid="uid://c6u26icv7mxth" path="res://assets/player.png" id="3_e4p34"]
@@ -48,6 +48,7 @@ texture = ExtResource("7_q0i8f")
 zoom = Vector2(1.2, 1.2)
 
 [node name="Hud" parent="Camera2D" unique_id=875620657 instance=ExtResource("4_rfe5m")]
+z_index = 100
 position = Vector2(-480, -272)
 
 [node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=1138837667]

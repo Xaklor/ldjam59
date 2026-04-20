@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yyvtbpgfecja"]
 
-[ext_resource type="Script" uid="uid://c4pm7j3wm3gcq" path="res://level/main.gd" id="1_qh04p"]
+[ext_resource type="Script" uid="uid://bhdvca3ibe3ms" path="res://level/main.gd" id="1_qh04p"]
 [ext_resource type="PackedScene" uid="uid://d1tmh55k56vsx" path="res://level/dungeon.tscn" id="2_0ukcc"]
 [ext_resource type="PackedScene" uid="uid://cnx1by327ssap" path="res://entities/player.tscn" id="3_nt2wp"]
 
@@ -10,3 +10,7 @@ script = ExtResource("1_qh04p")
 [node name="dungeon" parent="." unique_id=636243078 instance=ExtResource("2_0ukcc")]
 
 [node name="player" parent="." unique_id=180647971 instance=ExtResource("3_nt2wp")]
+
+[connection signal="end_turn" from="player" to="." method="_on_player_end_turn"]
+[connection signal="ping" from="player" to="." method="_on_player_ping"]
+[connection signal="toggle_visibility" from="player" to="." method="_on_player_toggle_visibility"]

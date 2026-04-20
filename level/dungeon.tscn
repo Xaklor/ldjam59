@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d1tmh55k56vsx"]
 
-[ext_resource type="Script" uid="uid://5qfbyeaq2oxj" path="res://level/dungeon.gd" id="1_jv6ym"]
-[ext_resource type="Texture2D" uid="uid://drsxmyfaq658" path="res://assets/tileset 2.png" id="2_4rako"]
-[ext_resource type="Script" uid="uid://bgl38y47o2pvr" path="res://level/tile_map.gd" id="3_4rako"]
+[ext_resource type="Script" uid="uid://dum3obnayuttu" path="res://level/dungeon.gd" id="1_jv6ym"]
+[ext_resource type="Texture2D" uid="uid://nsmgi3lrl6cs" path="res://assets/tileset 2.png" id="2_4rako"]
+[ext_resource type="Script" uid="uid://dgvomg2wf7ra1" path="res://level/tile_map.gd" id="3_4rako"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jv6ym"]
 texture = ExtResource("2_4rako")

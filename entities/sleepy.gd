@@ -31,6 +31,8 @@ func _process(delta: float):
 	
 # take a turn
 func step():
+	if not is_inside_tree():
+		return
 	if hp <= 0:
 		play_death_sound()
 		tile_map.astar.set_point_solid(grid_pos, false)
@@ -43,16 +45,16 @@ func step():
 		
 		tile_map.astar.set_point_solid(grid_pos, false)
 		var path = tile_map.astar.get_id_path(curr_pos, player_pos)
-		if path.size() > 2 and not ready_to_attack:
+		if path.size() > 2 and path.size() != 0 and not ready_to_attack:
 			var next_pos = tile_map.map_to_local(path[1])
 			grid_pos = path[1]
 			position = next_pos
 			ready_to_attack = false
-		elif path.size() <= 2 and ready_to_attack:
+		elif path.size() <= 2 and path.size() != 0 and ready_to_attack:
 			atk.spawn(get_tree(), player.global_position)
 			player.take_damage(attack)
 			ready_to_attack = false
-		elif not ready_to_attack:
+		elif not ready_to_attack and path.size() != 0:
 			echo.spawn(get_tree(), global_position, Color.RED, awake_ping_icon)
 			ready_to_attack = true
 		else:

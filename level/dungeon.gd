@@ -67,10 +67,8 @@ func rand_point(room):
 
 func spawn_enemy(pos):
 	var enemy = stabby.instantiate()
+	enemy.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_map.astar.cell_size
 	main.add_child(enemy)
-	enemy.global_position = tile_map.map_to_local(pos)
-	enemy.grid_pos = pos
-
 	
 func initialize_grid():
 	for x in range(WIDTH):
