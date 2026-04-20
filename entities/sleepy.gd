@@ -4,6 +4,7 @@ extends Area2D
 @onready var player = main.get_node("player")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 @onready var wake_up_sound = $AudioStreamPlayer
+@onready var death_sound = $DeathSound
 @onready var animation = $AnimatedSprite2D
 
 var echo = preload("res://ui/echo.gd")
@@ -31,6 +32,7 @@ func _process(delta: float):
 # take a turn
 func step():
 	if hp <= 0:
+		play_death_sound()
 		tile_map.astar.set_point_solid(grid_pos, false)
 		queue_free()
 		return
@@ -75,6 +77,12 @@ func intend_to_attack():
 func take_damage(amount):
 	hp -= amount
 	asleep = false
+	
+func play_death_sound():
+	remove_child(death_sound)
+	main.add_child(death_sound)
+	death_sound.play()
+	death_sound.finished.connect(death_sound.queue_free)
 	
 # called when the player uses a ping
 func on_player_ping(pos, range):

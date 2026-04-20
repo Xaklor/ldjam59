@@ -3,6 +3,7 @@ extends Area2D
 @onready var main = get_tree().get_root().get_node("main")
 @onready var player = main.get_node("player")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
+@onready var death_sound = $DeathSound
 var grid_pos: Vector2i
 var hp: int = 5
 var attack: int = 5
@@ -24,6 +25,7 @@ func _process(delta: float):
 # take a turn
 func step():
 	if hp <= 0:
+		play_death_sound()
 		tile_map.astar.set_point_solid(grid_pos, false)
 		queue_free()
 		return
@@ -57,6 +59,12 @@ func step():
 # called when the player is in range and this enemy wants to attack them
 func intend_to_attack():
 	pass
+	
+func play_death_sound():
+	remove_child(death_sound)
+	main.add_child(death_sound)
+	death_sound.play()
+	death_sound.finished.connect(death_sound.queue_free)
 
 # called when something causes this to take damage
 func take_damage(amount):
