@@ -1,6 +1,10 @@
 extends Node2D
 
-@onready  var tile_map = $TileMapLayer
+@onready var main = get_tree().get_root().get_node("main")
+@onready var tile_map = $tile_map
+@onready var player = main.get_node("player")
+
+var stabby = preload("res://entities/stabby.tscn")
 
 const WIDTH = 80
 const HEIGHT = 50
@@ -22,6 +26,12 @@ var rooms = []
 
 func _ready():
 	generate_dungeon()
+	tile_map.initialize()
+	var start_pos = tile_map.map_to_local(rooms[0].get_center())
+	player.global_position = start_pos
+	generate_enemies()
+	spawn_enemy(rooms[0].get_center())
+	
 
 func generate_dungeon():
 	initialize_grid()
@@ -38,6 +48,31 @@ func generate_dungeon():
 	for x in range(WIDTH):
 		for y in range(HEIGHT):
 			tile_map.set_cell(Vector2i(x, y), 1, grid[x][y])
+
+func generate_enemies():
+	for room in rooms.slice(1, rooms.size()):
+		var successes = 0
+		var used_pos = []
+		while (randf() < pow(0.7, successes + 1)):
+			var spawn_pos = rand_point(room)
+			while (spawn_pos in used_pos):
+				spawn_pos = rand_point(room)
+			spawn_enemy(spawn_pos)
+			used_pos.append(spawn_pos)
+			successes += 1
+
+func rand_point(room):
+	var x = randi_range(room.position.x, room.end.x - 1)
+	var y = randi_range(room.position.y, room.end.y - 1)
+	return Vector2i(x, y)
+
+func spawn_enemy(pos):
+	var enemy = stabby.instantiate()
+	enemy.position = tile_map.map_to_local(pos)
+	main.add_child(enemy)
+	print("Spawning enemy at ", enemy.global_position)
+	print("Player at ",  player.global_position)
+		
 
 func initialize_grid():
 	for x in range(WIDTH):

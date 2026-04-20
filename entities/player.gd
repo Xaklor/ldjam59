@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var main = get_tree().get_root().get_node("main")
-@onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
+@onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("dungeon").get_node("tile_map")
 @export var item_menu: PackedScene
 @onready var hurt_sound = $DamageSound
 @onready var atk_sound = $AttackSound
@@ -96,7 +96,7 @@ func _unhandled_input(event: InputEvent):
 				if grid_pos + point == enemy.grid_pos:
 					enemy.take_damage(damage)
 		atk_sound.play()
-		
+	
 	if moved and items.size() < 8 and tile_map.loot_map[grid_pos.x][grid_pos.y] != null:
 		var loot = tile_map.loot_map[grid_pos.x][grid_pos.y]
 		tile_map.loot_map[grid_pos.x][grid_pos.y] = null
