@@ -12,6 +12,10 @@ const MAX_ROOMS = 30
 
 const WALL = Vector2i(4, 0)
 const FLOOR = Vector2i(4,1)
+const NW_CORNER = Vector2i(3, 3)
+const NE_CORNER = Vector2i(2, 3)
+const SW_CORNER = Vector2i(0, 3)
+const SE_CORNER = Vector2i(1, 3)
 
 var grid = []
 var rooms = []
@@ -29,7 +33,8 @@ func generate_dungeon():
 			retries -= 1
 	
 	generate_corridors(rooms)
-		
+	generate_walls()
+	
 	for x in range(WIDTH):
 		for y in range(HEIGHT):
 			tile_map.set_cell(Vector2i(x, y), 1, grid[x][y])
@@ -53,7 +58,7 @@ func generate_room():
 	for x in range(room.position.x, room.end.x):
 		for y in range(room.position.y, room.end.y):
 			grid[x][y] = FLOOR
-			
+					
 	rooms.append(room)
 	return true
 	
@@ -128,3 +133,76 @@ func room_fits(new_room):
 		if room.intersects(new_room.grow(2)):
 			return false
 	return true
+	
+func generate_walls():
+	for x in range(WIDTH):
+		for y in range(HEIGHT):
+			if grid[x][y] == WALL:
+				grid[x][y] = determine_wall_type(x, y)
+
+func determine_wall_type(x, y):
+	var neighbors = {
+		"NW": false,
+		"N": false,
+		"NE": false,
+		"W": false,
+		"E": false,
+		"SW": false,
+		"S": false,
+		"SE": false
+	}
+	
+	neighbors.NW = valid_tile(x - 1, y - 1) and grid[x - 1][y - 1] == FLOOR
+	neighbors.N = valid_tile(x, y - 1) and grid[x][y - 1] == FLOOR
+	neighbors.NE = valid_tile(x + 1, y - 1) and grid[x + 1][y - 1] == FLOOR
+	neighbors.W = valid_tile(x - 1, y) and grid[x - 1][y] == FLOOR
+	neighbors.E = valid_tile(x + 1, y) and grid[x + 1][y] == FLOOR
+	neighbors.SW = valid_tile(x - 1, y + 1) and grid[x - 1][y + 1] == FLOOR
+	neighbors.S = valid_tile(x, y + 1) and grid[x][y + 1] == FLOOR
+	neighbors.SE = valid_tile(x + 1, y + 1) and grid[x + 1][y + 1] == FLOOR
+
+	
+	if neighbors.N and neighbors.E and neighbors.S and neighbors.W:
+		return Vector2i(2, 0) # all sides
+	if neighbors.N and neighbors.W and neighbors.S:
+		return Vector2i(0, 1) # top left bot
+	if neighbors.N and neighbors.E and neighbors.S:
+		return Vector2i(2, 1) # top right bot
+	if neighbors.N and neighbors.E and neighbors.W:
+		return Vector2i(1, 1) # top left right
+	if neighbors.E and neighbors.S and neighbors.W:
+		return Vector2i(3, 1) # left right bot
+	if neighbors.N and neighbors.S:
+		return Vector2i(0, 0) # top bot
+	if neighbors.E and neighbors.W:
+		return Vector2i(1, 0) # left right
+	if neighbors.N and neighbors.E:
+		return Vector2i(0, 2) # top right
+	if neighbors.N and neighbors.W:
+		return Vector2i(1, 2) # top left
+	if neighbors.S and neighbors.E:
+		return Vector2i(3, 2) # bot right
+	if neighbors.S and neighbors.W:
+		return Vector2i(2, 2) # bot left
+	if neighbors.NW and neighbors.NE and neighbors.SW and neighbors.SE:
+		return Vector2i(3, 0) # four corners 
+	if neighbors.N:
+		return Vector2i(0, 4)
+	if neighbors.E:
+		return Vector2i(3, 4)
+	if neighbors.S:
+		return Vector2i(2, 4)
+	if neighbors.W:
+		return Vector2i(1, 4)
+	if neighbors.NW:
+		return Vector2i(1, 3)
+	if neighbors.NE:
+		return Vector2i(0, 3)
+	if neighbors.SW:
+		return Vector2i(2, 3)
+	if neighbors.SE:
+		return Vector2i(3, 3)
+	return WALL
+
+func valid_tile(x, y):
+	return x > 0 and y > 0 and x < WIDTH and y < HEIGHT

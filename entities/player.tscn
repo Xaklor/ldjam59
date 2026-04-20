@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bmdxia6ckn02f" path="res://entities/player.gd" id="1_merdl"]
 [ext_resource type="PackedScene" uid="uid://ddcxe0s42qvde" path="res://ui/item_menu.tscn" id="2_b0kkn"]
-[ext_resource type="Texture2D" uid="uid://c6u26icv7mxth" path="res://assets/player.png" id="3_e4p34"]
+[ext_resource type="Texture2D" uid="uid://cwjt688k7qe1r" path="res://assets/player.png" id="3_e4p34"]
 [ext_resource type="PackedScene" uid="uid://jf5q8sppvv2b" path="res://ui/hud.tscn" id="4_rfe5m"]
+[ext_resource type="AudioStream" uid="uid://cffqxdjd72f3h" path="res://assets/player-damage.wav" id="5_qly61"]
+[ext_resource type="AudioStream" uid="uid://ewsjvjx8ckwx" path="res://assets/player-attack.wav" id="6_6nm46"]
+[ext_resource type="AudioStream" uid="uid://cs8q3020urt35" path="res://assets/random.wav" id="6_qsoyl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3f3p"]
 size = Vector2(32, 32)
@@ -23,3 +26,12 @@ zoom = Vector2(1.2, 1.2)
 
 [node name="Hud" parent="Camera2D" unique_id=875620657 instance=ExtResource("4_rfe5m")]
 position = Vector2(-480, -272)
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=1138837667]
+stream = ExtResource("5_qly61")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=391974052]
+stream = ExtResource("6_6nm46")
+
+[node name="EchoSound" type="AudioStreamPlayer" parent="." unique_id=980398520]
+stream = ExtResource("6_qsoyl")

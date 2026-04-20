@@ -3,7 +3,11 @@ extends Area2D
 @onready var main = get_tree().get_root().get_node("main")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
 @export var item_menu: PackedScene
+@onready var hurt_sound = $DamageSound
+@onready var atk_sound = $AttackSound
+@onready var echo_sound = $EchoSound
 const PING_RANGE: int = 8
+
 
 var echo = preload("res://ui/echo.gd")
 var atk = preload("res://ui/attack_animation.gd")
@@ -59,6 +63,7 @@ func _unhandled_input(event: InputEvent):
 			grid_pos.x += 1
 			moved = true
 	if event.is_action_pressed("face_button_left"):
+		echo_sound.play()
 		ping.emit(grid_pos, PING_RANGE)
 		echo.spawn(get_tree(), global_position, Color.html("#89d9fc"))
 		acted = true
@@ -89,6 +94,7 @@ func _unhandled_input(event: InputEvent):
 			for enemy in get_tree().get_nodes_in_group("enemies"):
 				if grid_pos + point == enemy.grid_pos:
 					enemy.take_damage(damage)
+		atk_sound.play()
 		
 	if moved and items.size() < 8 and tile_map.loot_map[grid_pos.x][grid_pos.y] != null:
 		var loot = tile_map.loot_map[grid_pos.x][grid_pos.y]
@@ -107,6 +113,7 @@ func _unhandled_input(event: InputEvent):
 func take_damage(amount):
 	hp -= amount
 	update_hud()
+	hurt_sound.play()
 	if hp <= 0:
 		var saved = false
 		for idx in items.size():
