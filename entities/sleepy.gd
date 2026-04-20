@@ -58,9 +58,9 @@ func step():
 	
 	tile_map.astar.set_point_solid(grid_pos, true)
 	if pinged:
-		wake_up_sound.play()
 		pinged = false
 		if asleep:
+			wake_up_sound.play()
 			asleep = false
 			animation.play("awake")
 			echo.spawn(get_tree(), global_position, Color.RED, sleep_ping_icon)
