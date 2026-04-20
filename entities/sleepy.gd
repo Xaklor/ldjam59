@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var main = get_tree().get_root().get_node("main")
 @onready var player = main.get_node("player")
-@onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
+@onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main")..get_node("dungeon").get_node("tile_map")
 @onready var wake_up_sound = $AudioStreamPlayer
 @onready var death_sound = $DeathSound
 @onready var animation = $icon

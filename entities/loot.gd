@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var main = get_tree().get_root().get_node("main")
 @onready var player = main.get_node("player")
-@onready var tile_map: TileMapLayer = main.get_node("tile_map")
+@onready var tile_map: TileMapLayer = main.get_node("dungeon").get_node("tile_map")
 @export var item_name: String
 @export var item_effect: int
 var item_is_equipment: bool = false

@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("tile_map")
+@onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("dungeon").get_node("tile_map")
 @export var loot_scene: PackedScene	
 var slot_num: int = 0
 var items: Array[Lib.Item] = []
