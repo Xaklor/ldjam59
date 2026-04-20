@@ -18,20 +18,28 @@ const MAX_ROOMS = 7
 
 const WALL = Vector2i(4, 0)
 const FLOOR = Vector2i(4,1)
-const NW_CORNER = Vector2i(3, 3)
-const NE_CORNER = Vector2i(2, 3)
-const SW_CORNER = Vector2i(0, 3)
-const SE_CORNER = Vector2i(1, 3)
+const STAIRS = Vector2i(4, 2)
 
 var grid = []
 var rooms = []
+var stairs_pos: Vector2i
+var curr_floor: int
 
 func _ready():
+	curr_floor = 1
 	next_floor()
 
 func next_floor():
+	if curr_floor >= 5:
+		get_tree().change_scene_to_file("res://level/win.tscn")
+		return
+		
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.queue_free()
+	
+	for item in get_tree().get_nodes_in_group("items"):
+		print(item)
+		item.queue_free()
 		
 	generate_dungeon()
 	tile_map.initialize()
@@ -40,6 +48,8 @@ func next_floor():
 	player.global_position = start_pos
 	player.grid_pos = start
 	generate_entities.call_deferred()
+	
+	curr_floor += 1
 	
 	for y in tile_map.astar.region.end.y:
 		var out = ""
@@ -51,7 +61,7 @@ func next_floor():
 		print(out)
 		
 func _input(event):
-	if event.is_action_pressed("move_down"):
+	if player.grid_pos == stairs_pos:
 		next_floor()
 
 func generate_dungeon():
@@ -62,9 +72,12 @@ func generate_dungeon():
 		while (!valid_room and retries > 0):
 			valid_room = generate_room()
 			retries -= 1
-	
+			
 	generate_corridors(rooms)
 	generate_walls()
+	
+	stairs_pos = rooms[rooms.size() - 1].get_center()
+	grid[stairs_pos.x][stairs_pos.y] = STAIRS
 	
 	for x in range(WIDTH):
 		for y in range(HEIGHT):

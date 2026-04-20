@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d1tmh55k56vsx"]
 
 [ext_resource type="Script" uid="uid://dum3obnayuttu" path="res://level/dungeon.gd" id="1_jv6ym"]
-[ext_resource type="Texture2D" uid="uid://nsmgi3lrl6cs" path="res://assets/tileset 2.png" id="2_4rako"]
+[ext_resource type="Texture2D" uid="uid://drsxmyfaq658" path="res://assets/tileset 2.png" id="2_4rako"]
 [ext_resource type="PackedScene" uid="uid://iosdxywq1swa" path="res://entities/loot.tscn" id="2_gliw6"]
 [ext_resource type="Script" uid="uid://dgvomg2wf7ra1" path="res://level/tile_map.gd" id="3_4rako"]
 

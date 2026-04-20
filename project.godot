@@ -27,6 +27,7 @@ PlayerData="*uid://dl00sexvgapne"
 
 enemies=""
 "sight toggleable"=""
+items=""
 
 [gui]
 
