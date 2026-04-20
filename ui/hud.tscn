@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://jf5q8sppvv2b"]
+[gd_scene format=3 uid="uid://jf5q8sppvv2b"]
 
 [ext_resource type="Texture2D" uid="uid://clijybis16j1m" path="res://assets/ui hp empty.png" id="1_276te"]
 [ext_resource type="Texture2D" uid="uid://b11a5fwnm7gkn" path="res://assets/ui hp full.png" id="2_546lt"]
