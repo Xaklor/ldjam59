@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ba1l54guhh6rs" path="res://level/win.gd" id="1_sb2jx"]
 
 [node name="win" type="Node2D" unique_id=1424562111]
+z_index = 4096
 script = ExtResource("1_sb2jx")
 
 [node name="color_bg" type="ColorRect" parent="." unique_id=2094839428]

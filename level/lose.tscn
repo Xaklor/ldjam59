@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://nwghc6wqx18a" path="res://level/lose.gd" id="1_adeiv"]
 
 [node name="lose" type="Node2D" unique_id=628129597]
+z_index = 4096
 script = ExtResource("1_adeiv")
 
 [node name="color_bg" type="ColorRect" parent="." unique_id=1057872326]
