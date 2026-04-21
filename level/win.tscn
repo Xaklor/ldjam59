@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bnlaqd3qd7o3m"]
+[gd_scene format=3 uid="uid://h08ylrsrjp2q"]
 
 [ext_resource type="Script" uid="uid://ba1l54guhh6rs" path="res://level/win.gd" id="1_sb2jx"]
 
@@ -7,6 +7,7 @@ z_index = 4096
 script = ExtResource("1_sb2jx")
 
 [node name="color_bg" type="ColorRect" parent="." unique_id=2094839428]
+z_index = 4096
 offset_left = -96.0
 offset_top = -56.0
 offset_right = 1280.0
@@ -14,6 +15,7 @@ offset_bottom = 728.0
 color = Color(0, 0, 0, 1)
 
 [node name="you_win" type="Label" parent="." unique_id=1964668100]
+z_index = 4096
 offset_left = 360.0
 offset_top = 192.0
 offset_right = 792.0
@@ -23,6 +25,7 @@ theme_override_font_sizes/font_size = 100
 text = "You Win!"
 
 [node name="retry" type="Label" parent="." unique_id=1374451565]
+z_index = 4096
 offset_left = 240.0
 offset_top = 384.0
 offset_right = 953.0
@@ -33,6 +36,7 @@ text = "press V or gamepad A to continue.
 "
 
 [node name="cursor" type="ColorRect" parent="." unique_id=1863795493]
+z_index = 4096
 offset_left = 792.0
 offset_top = 272.0
 offset_right = 848.0

@@ -8,6 +8,7 @@ extends Area2D
 @onready var atk_sound = $AttackSound
 @onready var echo_sound = $EchoSound
 @onready var pick_up_sound = $PickUpSound
+@onready var move_sound = $MoveSound
 const PING_RANGE: int = 8
 
 
@@ -40,6 +41,7 @@ func _unhandled_input(event: InputEvent):
 	var moved = false
 	var acted = false
 	if event.is_action_pressed("move_down"):
+		move_sound.play()
 		facing = 1
 		update_facing()
 		if !tile_map.astar.is_point_solid(grid_pos + Vector2i(0, 1)):
@@ -47,6 +49,7 @@ func _unhandled_input(event: InputEvent):
 			grid_pos.y += 1
 			moved = true
 	if event.is_action_pressed("move_up"):
+		move_sound.play()
 		facing = 3
 		update_facing()
 		if !tile_map.astar.is_point_solid(grid_pos + Vector2i(0, -1)):
@@ -54,6 +57,7 @@ func _unhandled_input(event: InputEvent):
 			grid_pos.y -= 1
 			moved = true
 	if event.is_action_pressed("move_left"):
+		move_sound.play()
 		facing = 2
 		update_facing()
 		if !tile_map.astar.is_point_solid(grid_pos + Vector2i(-1, 0)):
@@ -61,6 +65,7 @@ func _unhandled_input(event: InputEvent):
 			grid_pos.x -= 1
 			moved = true
 	if event.is_action_pressed("move_right"):
+		move_sound.play()
 		facing = 0
 		update_facing()
 		if !tile_map.astar.is_point_solid(grid_pos + Vector2i(1, 0)):
@@ -135,7 +140,6 @@ func take_damage(amount):
 				break
 		
 		if not saved:
-			# PlayerData.reset()
 			get_tree().change_scene_to_file("res://level/lose.tscn")
 	
 func update_hud():

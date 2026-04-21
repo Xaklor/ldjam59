@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://cs8q3020urt35" path="res://assets/random.wav" id="6_qsoyl"]
 [ext_resource type="Texture2D" uid="uid://mus3kp5ovj3" path="res://assets/facing3.png" id="7_q0i8f"]
 [ext_resource type="AudioStream" uid="uid://b5lg16ag2i35h" path="res://assets/item-pickup.wav" id="8_i623q"]
+[ext_resource type="AudioStream" uid="uid://f3v2k43ekegs" path="res://assets/player-move.wav" id="14_q0i8f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3f3p"]
 size = Vector2(32, 32)
@@ -64,3 +65,8 @@ stream = ExtResource("6_qsoyl")
 
 [node name="PickUpSound" type="AudioStreamPlayer" parent="." unique_id=1618497620]
 stream = ExtResource("8_i623q")
+
+[node name="MoveSound" type="AudioStreamPlayer" parent="." unique_id=992782923]
+stream = ExtResource("14_q0i8f")
+volume_db = -6.754
+pitch_scale = 0.79
