@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://dgll4nlcltkvv"]
 
 [ext_resource type="Script" uid="uid://d3p2sivc4ixrs" path="res://entities/stabby.gd" id="1_1pa3r"]
-[ext_resource type="Texture2D" uid="uid://brb5e5755uqwh" path="res://assets/stabby.png" id="2_emnyu"]
+[ext_resource type="Texture2D" uid="uid://c4t7bfkccrw6j" path="res://assets/stabby.png" id="2_emnyu"]
 [ext_resource type="AudioStream" uid="uid://cm2bpqwnjywrw" path="res://assets/death.wav" id="3_6d42a"]
+[ext_resource type="AudioStream" uid="uid://b0ank8fotfnyx" path="res://assets/player-notification.wav" id="4_vxi58"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xful"]
 size = Vector2(32, 32)
 
 [node name="stabby" type="Area2D" unique_id=1631536211 groups=["enemies", "sight toggleable"]]
+z_index = 10
+z_as_relative = false
 script = ExtResource("1_1pa3r")
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=292843490]
@@ -20,3 +23,6 @@ texture = ExtResource("2_emnyu")
 [node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=143771100]
 stream = ExtResource("3_6d42a")
 volume_db = 8.0
+
+[node name="NotificationSound" type="AudioStreamPlayer" parent="." unique_id=1425304133]
+stream = ExtResource("4_vxi58")

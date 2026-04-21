@@ -30,15 +30,16 @@ func _ready():
 	next_floor()
 
 func next_floor():
-	if curr_floor >= 5:
-		get_tree().change_scene_to_file("res://level/win.tscn")
-		return
 		
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.queue_free()
 	
 	for item in get_tree().get_nodes_in_group("items"):
 		item.queue_free()
+		
+	if curr_floor >= 5:
+		get_tree().change_scene_to_file("res://level/win.tscn")
+		return
 		
 	generate_dungeon()
 	tile_map.initialize()

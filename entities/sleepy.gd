@@ -5,6 +5,7 @@ extends Area2D
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("dungeon").get_node("tile_map")
 @onready var wake_up_sound = $AudioStreamPlayer
 @onready var death_sound = $DeathSound
+@onready var notification_sound = $NotificationSound
 @onready var animation = $icon
 
 var echo = preload("res://ui/echo.gd")
@@ -55,6 +56,7 @@ func step():
 			player.take_damage(attack)
 			ready_to_attack = false
 		elif not ready_to_attack and path.size() != 0:
+			notification_sound.play()
 			echo.spawn(get_tree(), global_position, Color.RED, awake_ping_icon)
 			ready_to_attack = true
 		else:

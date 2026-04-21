@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d1hcrvk6dfjgg" path="res://ui/item_menu.gd" id="1_xv3ax"]
 [ext_resource type="PackedScene" uid="uid://iosdxywq1swa" path="res://entities/loot.tscn" id="2_sq0qv"]
-[ext_resource type="Texture2D" uid="uid://gq4d16b1gjkr" path="res://assets/selector.png" id="3_sq0qv"]
+[ext_resource type="Texture2D" uid="uid://cn0fa8u1my4ar" path="res://assets/selector.png" id="3_sq0qv"]
+[ext_resource type="AudioStream" uid="uid://cgsusq3msjylk" path="res://assets/item-drop.wav" id="4_dgllf"]
 
 [node name="item_menu" type="CanvasLayer" unique_id=1084769955]
 script = ExtResource("1_xv3ax")
@@ -43,3 +44,7 @@ offset_right = 560.0
 offset_bottom = 392.0
 theme_override_colors/font_color = Color(0.18039216, 0.8, 0.5058824, 1)
 autowrap_mode = 2
+
+[node name="DropSound" type="AudioStreamPlayer" parent="." unique_id=243182097]
+stream = ExtResource("4_dgllf")
+volume_db = 1.351

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("dungeon").get_node("tile_map")
+@onready var drop_sound = $DropSound
 @export var loot_scene: PackedScene	
 var slot_num: int = 0
 var items: Array[Lib.Item] = []
@@ -60,6 +61,7 @@ func _input(event: InputEvent):
 		loot.item_attack_area = item.attack_area
 		loot.item_attack_damage = item.attack_damage
 		loot.position = player.position
+		drop_sound.play()
 		get_tree().get_root().add_child(loot)
 		items.pop_at(slot_num)
 		queue_free()

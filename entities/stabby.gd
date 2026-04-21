@@ -4,6 +4,7 @@ extends Area2D
 @onready var player = main.get_node("player")
 @onready var tile_map: TileMapLayer = get_tree().get_root().get_node("main").get_node("dungeon").get_node("tile_map")
 @onready var death_sound = $DeathSound
+@onready var notification_sound = $NotificationSound
 var grid_pos: Vector2i
 var hp: int = 5
 var attack: int = 5
@@ -48,6 +49,7 @@ func step():
 		player.take_damage(attack)
 		ready_to_attack = false
 	elif not ready_to_attack and path.size() != 0 and path.size() <= 10:
+		notification_sound.play()
 		echo.spawn(get_tree(), global_position, Color.RED, ping_icon)
 		ready_to_attack = true
 	else:

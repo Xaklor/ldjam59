@@ -7,6 +7,7 @@ extends Area2D
 @onready var hurt_sound = $DamageSound
 @onready var atk_sound = $AttackSound
 @onready var echo_sound = $EchoSound
+@onready var pick_up_sound = $PickUpSound
 const PING_RANGE: int = 8
 
 
@@ -107,6 +108,7 @@ func _unhandled_input(event: InputEvent):
 		var loot = tile_map.loot_map[grid_pos.x][grid_pos.y]
 		tile_map.loot_map[grid_pos.x][grid_pos.y] = null
 		items.append(loot.item)
+		pick_up_sound.play()
 		loot.queue_free()
 		
 	if moved or acted:
